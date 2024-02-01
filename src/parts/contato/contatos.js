@@ -1,4 +1,5 @@
 import './contato.css';
+import './mediaquery.css';
 import seta from "../img/seta-direitaG.png";
 import mapa from "../img/mapa.png";
 import vector from "../img/Vector1.svg";
@@ -30,10 +31,13 @@ const Contact = () => {
                 <div className="funcionamento-hora">
                     <h3>Horario de funcionamento</h3>
                     <ul>
-                        <li>Segunda-feira (<p>10hrs a 20hrs</p>)</li>
-                        <li>Segunda-feira (<p>10hrs a 20hrs</p>)</li>
-                        <li>Segunda-feira (<p>10hrs a 20hrs</p>)</li>
-                        <li>Segunda-feira (<p>10hrs a 20hrs</p>)</li>
+                        <li>Segunda-feira <p>(10hrs a 20hrs)</p></li>
+                        <li>Terça-feira <p>(10hrs a 20hrs)</p></li>
+                        <li>Quarta-feira <p>(10hrs a 20hrs)</p></li>
+                        <li>Quinta-feira <p>(10hrs a 20hrs)</p></li>
+                        <li>Sexta-feira <p>(10hrs a 20hrs)</p></li>
+                        <li>Sábado <p>(10hrs a 16hrs)</p></li>
+                        <li>Domingo <p>(Fechado)</p></li>
                     </ul>
                 </div>
             </div>

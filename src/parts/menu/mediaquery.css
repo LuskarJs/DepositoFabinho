@@ -1,0 +1,27 @@
+@media (max-width: 911px) {
+    #menu-page .slide-marcas .swiper-wrapper .swiper-slide  figure {
+        width: 100px;
+        height: 70px;
+    }
+
+    #menu-page .text-menu h3 {
+        font-size: .9rem;
+        padding: .4rem .5rem;
+    }
+
+    #menu-page .slide-marcas .swiper-wrapper .swiper-slide  figure {
+        width: 65px;
+        height: 65px;
+        margin: .5rem;
+    }
+}
+
+@media (max-width:374px) {
+    #menu-page .text-menu h3 {
+        font-size: .7rem;
+    }
+
+    #menu-page .slide-marcas{
+        margin-top: 0;
+    }
+}

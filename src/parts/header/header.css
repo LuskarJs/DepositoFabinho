@@ -16,6 +16,12 @@ img {
     justify-content: space-between;
 }
 
+@media (max-width: 911px) {
+    .App-header {
+        display: none;
+    }
+}
+
 .App-header nav ul,
 .App-header nav {
     width: 100%;

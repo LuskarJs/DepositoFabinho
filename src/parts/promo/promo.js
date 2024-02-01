@@ -2,6 +2,7 @@ import img from '../img/coca125.png';
 import carrinho from '../img/carrinho.png';
 import notification from "../img/notificacao.png";
 import "./promo.css";
+import "./mediaquery.css";
 
 const PromoPage = () => {
 

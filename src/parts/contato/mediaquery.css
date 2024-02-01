@@ -1,0 +1,45 @@
+@media (max-width: 911px) {
+    #contato-page {
+        height: 100%;
+        padding: 2rem 0;
+    }
+
+    #contato-page .bg-top img {
+        height: 100px;
+    }
+
+    #contato-page .container-contato .funcionamento-hora {
+        padding-bottom: 3rem;
+    }
+
+    #contato-page .container-contato .container-info-map {
+        padding: 0 2rem ;
+        flex-wrap: wrap;
+        margin-top: 1.7rem;
+    }
+
+    #contato-page .container-contato .container-info-map .text-info-map {
+        margin-bottom: 2rem;
+    }
+
+    #contato-page .container-contato .container-info-map .text-info-map button {
+        margin-top: 1rem;
+    }
+
+    #contato-page .container-contato .container-info-map figure {
+        width: 250px;
+        height: 170px;
+    }
+
+    #contato-page .container-contato .container-info-map .text-info-map h4,
+    #contato-page .container-contato .container-info-map .text-info-map h3 {
+    font-size: .9rem;
+}
+    
+}
+
+@media (max-width: 560px) {
+    #contato-page .bg-top img {
+        height: 70px;
+    }
+}

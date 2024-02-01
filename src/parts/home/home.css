@@ -40,6 +40,12 @@
     font-family: var(--font-poppins);
 }
 
+@media (max-width: 486px) {
+    #home .home-text h1 {
+        font-size: .8rem;
+    }
+}
+
 #home .bottom-home {
     position: absolute;
     bottom: 0;
@@ -66,4 +72,12 @@
 #home .bottom-home img:last-child{
     width: 100%!important;
     height: 140px;
+}
+
+@media (max-width: 560px) {
+
+    #home .bottom-home img:last-child{
+        width: 100%!important;
+        height: 80px;
+    }
 }

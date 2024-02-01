@@ -1,14 +1,24 @@
+
+
 footer {
     width: 100%;
     height: 200px;
     display: flex;
     flex-wrap: wrap;
+    gap: 2rem .4rem;
     align-items: center;
     color: white;
     padding: 0 3rem;
     font-family: var(--font-poppins);
     justify-content: space-between;
     background-color: var(--bg-color);
+}
+
+@media (max-width: 911px) {
+    footer {
+        height: 100%;
+        padding: 2rem !important;
+    }
 }
 
 footer figure {
@@ -80,6 +90,9 @@ footer .container-menu ul li:hover {
 
 .container-notification .container-noticias {
     margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-notification .container-noticias input {
@@ -99,4 +112,18 @@ footer .container-menu ul li:hover {
     color: white;
     cursor: pointer;
     border-radius:0 5px 5px 0;
+}
+
+@media (max-width: 460px) {
+    .container-notification .container-noticias input {
+        padding: .53rem .6rem;
+    }
+
+    .container-notification .container-noticias button {
+        font-size: .7rem;
+    }
+
+    .container-notification .container-noticias input {
+        width: 40%;
+    }
 }

@@ -1,0 +1,30 @@
+@media (max-width:911px) {
+    #promo-page .promo-product .card-product {
+        height: 280px;
+        width: 190px;
+    }
+
+    .Card-product figure,
+    #promo-page .promo-product .card-product figure {
+    width: 170px;
+    height: 80px;
+    }
+
+    #promo-page .notification {
+        right: 10px;
+        top: 15px;
+    }
+
+    #menu-page,
+    #promo-page {
+        height: 100%;
+    }
+
+    #promo-page .title-promo h2 {
+        font-size: 1rem;
+    }
+
+    #menu-page .container-slider .slide-card {
+        justify-content: center!important;
+    }
+}

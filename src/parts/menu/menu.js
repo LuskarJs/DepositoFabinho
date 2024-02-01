@@ -1,8 +1,8 @@
-import cocaLogo from "../img/logococa.png"
-import nestleLogo from "../img/logonestle.png"
 import img from '../img/coca125.png';
 import menuicon from '../img/folheto.png';
 import "./menu.css";
+import "./mediaquery.css";
+import MarcaSlider from './sliderjs';
 
 const Menu = () => {
 
@@ -11,20 +11,7 @@ const Menu = () => {
             <div className="text-menu">
                 <h3>marcas que você encontra aqui perto de você</h3>
             </div>
-            <div className="slide-marcas">
-                <ul>
-                    <li className="active">
-                        <figure>
-                            <img src={cocaLogo} alt="logo coca cola" />
-                        </figure>
-                    </li>
-                    <li>
-                        <figure>
-                            <img src={nestleLogo} alt="logo Nestle" />
-                        </figure>
-                    </li>
-                </ul>
-            </div>
+            <MarcaSlider />
             <div className="container-slider">
                 <div className="text-slide-menu">
                     <h3>Mais Alguns Produtos que vOcê encontra por aqui</h3>
