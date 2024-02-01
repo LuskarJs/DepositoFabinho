@@ -1,11 +1,12 @@
 import Phone from "../img/phone-call.png";
+import logo from "../img/logoFabio-removebg-preview.png";
 import "./header.css";
 
 function Header() {
 
     return (
         <header className="App-header">
-          <img src="" className="Logo" alt="logo" />
+          <img src={logo} className="Logo" alt="logo" />
           <nav>
             <ul>
               <li>Inicio</li>

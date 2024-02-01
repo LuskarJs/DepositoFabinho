@@ -4,6 +4,7 @@ import hipercard from "../img/hipercard.png";
 import mastercard from "../img/mastercard.png";
 import pix from "../img/pix.png";
 import visa from "../img/visa.png";
+import logo from "../img/logoFabio-removebg-preview.png";
 
 
 
@@ -12,7 +13,7 @@ const Footer = () => {
     return (
         <footer>
             <figure>
-                <img src="" alt="" />
+                <img src={logo} alt="logo da empresa" />
             </figure>
             <nav className="container-menu">
                 <h3>Menus</h3>
@@ -23,7 +24,7 @@ const Footer = () => {
                     <li>Sobre nós</li>
                 </ul>
             </nav>
-            <nav className="container-menu">
+            <nav className="container-pagamento">
                 <h3>Metodos de Pagamento</h3>
                 <ul>
                     <li>
