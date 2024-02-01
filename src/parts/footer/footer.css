@@ -1,0 +1,68 @@
+footer {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: white;
+    padding: 0 3rem;
+    font-family: var(--font-poppins);
+    justify-content: space-between;
+    background-color: var(--bg-color);
+}
+
+footer .container-menu ul {
+    list-style: none;   
+    width: 100%;
+}
+
+footer .container-menu ul h3 {
+    margin-bottom: 20px;
+}
+
+footer .container-menu ul li {
+    padding-left: 5px;
+    transition: all .35s ease;
+    cursor: pointer;
+}
+
+footer .container-menu ul li:hover {
+    padding-left: 0px;
+    transition: all .35s ease;
+}
+
+.container-notification {
+    height: 100%;
+    font-family: var(--font-poppins);
+}
+
+.container-notification h3 {
+    background-color: white;
+    color: var(--bg-color);
+    padding: .2rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.container-notification .container-noticias {
+    margin-left: 10px;
+}
+
+.container-notification .container-noticias input {
+    outline: none;
+    padding: .6rem .6rem;
+    border-radius: 5px 0 0 5px;
+    border: none;
+}
+
+.container-notification .container-noticias button {
+    background-color: var(--color-green);
+    padding: .6rem .6rem;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    cursor: pointer;
+    border-radius:0 5px 5px 0;
+}

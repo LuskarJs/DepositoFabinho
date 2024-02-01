@@ -1,0 +1,192 @@
+#contato-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+#contato-page .bg-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+}
+
+#contato-page .bg-top img {
+    width: 100%;
+    height: 200px;
+    rotate: 180deg;
+}
+
+#contato-page .container-contato {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+#contato-page .container-contato .container-info-map {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#contato-page .container-contato .container-info-map .text-info-map {
+    display: flex;
+    gap: 1rem 0;
+    flex-direction: column;
+    font-family: var(--font-poppins);
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+#contato-page .container-contato .container-info-map .text-info-map h4,
+#contato-page .container-contato .container-info-map .text-info-map h3 {
+    text-transform: uppercase;
+}
+
+#contato-page .container-contato .container-info-map .text-info-map h4 span,
+#contato-page .container-contato .container-info-map .text-info-map h3 p {
+    font-weight: 400;
+}
+
+#contato-page .container-contato .container-info-map .text-info-map button {
+    border: none;
+    background-color: var(--button-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: .2rem .7rem;
+    border-radius: 5px;
+    color: white;
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    margin-top: 2.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: .4rem 1.2rem;
+    cursor: pointer;
+}
+
+#contato-page .container-contato .container-info-map .text-info-map button img {
+    transition: all .35s ease;
+}
+
+#contato-page .container-contato .container-info-map .text-info-map button:hover img {
+    margin-left: 5px;
+    transition: all .35s ease;
+}
+
+#contato-page .container-contato .container-info-map figure {
+    width: 350px;
+    height: 200px;
+    box-shadow: 10px 10px 2px #D9D9D9;
+}
+
+#contato-page .container-contato .container-info-map figure img {
+    border-radius: 5px;
+    height: 100%;
+    box-shadow: -12px -10px 2px #D9D9D9;
+    width: 100%;
+}
+
+
+#contato-page .container-contato .funcionamento-hora ul,
+#contato-page .container-contato .funcionamento-hora {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#contato-page .container-contato .funcionamento-hora h3 {
+    background-color: var(--bg-color);
+    padding: .5rem 2rem;
+    color: white;
+    border-radius: 5px;
+    margin: .5rem;
+    letter-spacing: 2px;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+}
+
+#contato-page .container-contato .funcionamento-hora ul li{
+    display: flex;
+    align-items: center;
+    color: var(--button-color);    
+    margin: .2rem 0;
+    text-transform: uppercase;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#contato-page .alert-open {
+    display: flex;
+    width: 250px;
+    box-shadow: 2px 9px 15px rgba(0, 0, 0, 0.555);
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: white;
+    padding: .4rem 2rem;
+    transform: translateY(70px);
+}
+
+#contato-page .alert-open p {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--bg-color);
+}
+
+#contato-page .alert-open p span {
+    padding-right: 5px;
+}
+
+#contato-page .alert-open .circle {
+    background-color: #29A71A;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+#contato-page .entrega {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--bg-color);
+    width: 100%;
+}
+
+#contato-page .entrega figure {
+    width: 80px;
+    height: 80px;
+}
+
+#contato-page .entrega figure img {
+    height: 100%;
+    width: 100%;
+}
+
+#contato-page .entrega p {
+    text-transform: uppercase;
+    color: white;
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+}

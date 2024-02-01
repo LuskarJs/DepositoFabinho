@@ -1,0 +1,132 @@
+.gerenciarContato {
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    position: relative;
+}
+
+.gerenciarContato .help {
+    position: absolute;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    transition: all .35s ease;
+    justify-content: center;
+    top: 20px;
+    padding: .5rem .7rem;
+    border-radius: 50%;
+} 
+
+.gerenciarContato .help:before {
+    position: absolute;
+    content: 'Nessa Página você poderá configurar os metodos de comunicação que os usuarios podem ver para entrar em contato com você ou seguir em suas redes sociais OBS: As informações de contatos irão aparecer no rodapé da pagina e entre outros botões de ação como o botão do whatsapp e telefone para contato.';
+    height: 220px;
+    width: 200px;
+    padding: .8rem;
+    background-color: #D9D9D9;
+    color: black;
+    transform: translateX(15px);
+    opacity: 0;
+    visibility: hidden;
+    right: 50px;
+    top: 30px;
+    border-radius: 5px;
+}
+
+.gerenciarContato .help:hover {
+    cursor: pointer;
+    transition: all .35s ease;
+    background-color: #D9D9D9;
+}
+
+.gerenciarContato .help:hover:before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0px);
+    transition: all .35s ease;
+}
+
+.gerenciarContato form {
+    width: 100%;
+    display: flex;
+    gap: 1rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.gerenciarContato form .input-form {
+    display: flex;
+    width: 100%;
+    gap: 0 2rem;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.gerenciarContato form .input-form .input-div {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.gerenciarContato form .input-form .input-div label {
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    padding-bottom: .5rem;
+    font-size: 1.2rem;
+}
+
+.gerenciarContato form .input-form .input-div input {
+    padding: .8rem .6rem;
+    outline: none;
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
+.gerenciarContato form .input-form .check-input {
+    display: flex;
+    align-items: center;
+}
+
+.gerenciarContato form .input-form .check-input label {
+    font-family: var(--font-poppins);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+
+.gerenciarContato form .input-form .check-input input[type="checkbox"] {
+    padding: .9rem;
+    width: 35px;
+    height: 35px;
+    appearance: #d9d9d9!important;
+}
+
+.gerenciarContato form .button-container {
+    width: 100%;
+    margin-top: 2rem;
+    padding: .4rem 1rem;
+}
+
+.gerenciarContato form .button-container button {
+    background-color: var(--bg-color);
+    color: white;
+    font-family: var(--font-poppins);
+    padding: 1rem 1.2rem;
+    border: none;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    transition: all .35s ease;
+    border-radius: 20px;    
+    width: 100%;
+}
+
+.gerenciarContato form .button-container button:hover {
+    box-shadow: 0px 2px 10px var(--bg-color);
+    transition: all .35s ease;
+    cursor: pointer;
+}

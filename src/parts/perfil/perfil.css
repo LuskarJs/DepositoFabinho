@@ -1,0 +1,104 @@
+#Perfil {
+    display: grid;
+    grid-template-columns: auto 3fr;
+    grid-template-rows: auto;
+    background-color: var(--bg-color);
+    height: 100vh;
+    width: 100%;
+}
+
+#Perfil .Dash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.801);
+    border-radius: 20px;
+    position: relative;
+}
+
+#Perfil .Dash .img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150px;
+    margin: 1rem 0;
+}
+
+#Perfil .Dash .info-container {
+    font-family: var(--font-poppins);
+    margin: .5rem 0;
+}
+
+#Perfil .Dash .info-container h3 {
+    font-size: 1.2rem;
+}
+
+#Perfil .Dash .info-container h4 span {
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#Perfil .Dash .img-container figure:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-radius: 50%;
+    transition: all .35s ease;
+    padding:.4rem;
+}
+
+#Perfil .Dash .img-container figure:first-child:Hover {
+    background-color: grey;
+    cursor: pointer;
+    transition: all .35s ease;
+}
+
+#Perfil .Dash .img-container figure:last-child {
+    width: 200px;
+    height: 200px;
+}
+
+#Perfil .Dash .img-container figure:last-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#Perfil .Dash .option-dash ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .2rem 0;
+    justify-content: center;
+    list-style: none;
+    font-family: var(--font-poppins);
+}
+
+#Perfil .Dash .option-dash ul li {
+    color: var(--bg-color);
+    padding: .6rem 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#Perfil .Dash .option-dash ul li.active {
+    background-color: var(--bg-color);
+    color: white;
+    padding: .6rem 2rem;
+    border-radius: 20px;
+}
+
+#Perfil .Dash .option-dash ul li:last-child {
+    color: crimson;
+}

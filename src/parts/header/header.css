@@ -1,0 +1,65 @@
+img {
+    width: 25px;
+    height: 25px;
+}
+
+.App-header {
+    position: sticky;
+    z-index: 20!important;
+    top: 0;
+    left: 0;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.589);
+    padding: .2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.App-header nav ul,
+.App-header nav {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.App-header nav ul li {
+    cursor: pointer;
+    font-size: .8rem;
+    text-transform: uppercase;
+    font-family: var(--font-roboto);
+    font-weight: 700;
+}
+
+.App-header button {
+    width: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: .2rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: var(--font-poppins);
+    font-weight: 300;
+    background-color: var(--color-green);
+    padding: .4rem;
+    transition: scale .35s ease;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.App-header button:Hover {
+    cursor: pointer;
+    font-weight: 400;
+    scale: .9;
+    transition: scale .55s ease;
+    box-shadow: 0px 1px 5px rgba(128, 128, 128, 0.658);
+}
+
+.App-header button img {
+    color: white;
+}
