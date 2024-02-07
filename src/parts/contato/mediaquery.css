@@ -1,3 +1,9 @@
+@media (max-width:1274px) {
+#contato-page {
+    height: 100%;
+}
+}
+
 @media (max-width: 911px) {
     #contato-page {
         height: 100%;
@@ -6,10 +12,6 @@
 
     #contato-page .bg-top img {
         height: 100px;
-    }
-
-    #contato-page .container-contato .funcionamento-hora {
-        padding-bottom: 3rem;
     }
 
     #contato-page .container-contato .container-info-map {

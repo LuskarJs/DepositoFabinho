@@ -13,7 +13,7 @@ img {
     padding: .2rem 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 @media (max-width: 911px) {
@@ -27,13 +27,15 @@ img {
     width: 100%;
     list-style: none;
     display: flex;
+    gap: 0 1rem;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .App-header nav ul li {
     cursor: pointer;
-    font-size: .8rem;
+    font-size: .9rem;
+    color: var(--bg-color);
     text-transform: uppercase;
     font-family: var(--font-roboto);
     font-weight: 700;
@@ -68,4 +70,11 @@ img {
 
 .App-header button img {
     color: white;
+}
+
+.App-header .option-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
 }

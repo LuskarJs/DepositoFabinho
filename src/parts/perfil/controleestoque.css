@@ -1,0 +1,262 @@
+.container-controle-estoque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 20px;
+    position: relative;
+}
+
+.container-controle-estoque .container-addProduto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+}
+
+.container-controle-estoque .container-addProduto form {
+    background-color: var(--bg-color);
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    padding: 1rem 0;
+    justify-content: center;
+}
+
+.container-controle-estoque .container-addProduto form .button-action {
+    display: flex;
+    margin-top: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container-controle-estoque .container-addProduto form .button-action button {
+    background-color: var(--button-color);
+    color: white;
+    padding: .8rem 2rem;
+    transition: all .35s ease;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.container-controle-estoque .container-addProduto form .button-action button:last-child {
+    background-color: crimson;
+} 
+
+.container-controle-estoque .container-addProduto form .button-action button:Hover {
+    box-shadow: 0px 0px 10px var(--button-color);
+    cursor: pointer;
+    transition: all .35s ease;
+}
+
+.container-controle-estoque .container-addProduto form .container-form {
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container-controle-estoque .container-addProduto .info-AddProduto {
+    display: flex;
+    gap: 1rem 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container-controle-estoque .container-addProduto .info-AddProduto .input-container {
+    display: flex;
+    width: 100%;    
+    color: white;
+    flex-direction: column;
+}
+
+.container-controle-estoque .container-addProduto .info-AddProduto .input-container label {
+    font-family: var(--font-poppins);
+}
+
+.container-controle-estoque .container-addProduto .info-AddProduto .input-container input {
+    padding: .4rem .6rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.container-controle-estoque .container-addProduto form .img-produtoAdd {
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    margin: 1rem;
+}
+
+.container-controle-estoque .container-addProduto form .img-produtoAdd figure {
+    width: 150px;
+    height: 100px;
+    padding: 1rem;
+}
+
+.container-controle-estoque .container-addProduto form .img-produtoAdd figure img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.container-controle-estoque .Filter-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-controle-estoque .Filter-container .addProduto {
+    padding: .4rem 1.2rem;
+    align-self: flex-start;
+}
+
+.container-controle-estoque .Filter-container .addProduto button {
+    padding: .5rem 2rem;
+    border: none;
+    border-radius: 5px;
+    transition: all .35s ease;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    background-color: var(--bg-color);
+    color: white;
+}
+
+.container-controle-estoque .Filter-container .addProduto button:hover {
+    box-shadow: 0px 0px 10px var(--bg-color);
+    cursor: pointer;
+    transition: all .35s ease;
+}
+
+.container-controle-estoque .Filter-container form {
+    gap: 0 .4rem;
+    display: flex;
+}
+
+.container-controle-estoque .Filter-container form button {
+    padding: .4rem .7rem;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--button-color);
+    border: none;
+}
+
+.container-controle-estoque .Filter-container form button:last-child {
+    background-color: transparent;
+    border: 2px solid var(--button-color);
+}
+
+.container-controle-estoque .Filter-container input {
+    padding: .4rem .5rem;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+    outline: none;
+    border: none;
+    margin-right: .2rem;
+}
+
+.container-controle-estoque .container-estoque-controle {
+    width: 100%;
+    height: 100%;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    overflow-y: scroll;
+    height: 81vh;
+    width: 100%;
+    gap: 1rem;
+    padding: .8rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(24, 24, 24, 0.603);
+    align-items: center;
+    justify-content: center;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .info-produto-estoque {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #D9D9D9;
+    padding: .5rem;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    font-size: .9rem;
+    border-radius: 5px;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .info-produto-estoque ul {
+    list-style: none;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .info-produto-estoque ul li p {
+    font-weight: 700;
+}
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .info-produto-estoque ul li p span {
+    font-weight: 400;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .img-produto-estoque {
+    display: flex;
+    align-items: center;
+    gap: 0 .6rem;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .img-produto-estoque .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem 0;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .img-produto-estoque .action-buttons button {
+    padding: .5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .img-produto-estoque .action-buttons button:last-child{
+    background-color: crimson;
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .img-produto-estoque > figure {
+    width: 120px;
+    height: 110px;
+    border-radius: 5px;
+    background-color: #D9D9D9;
+
+}
+
+.container-controle-estoque .container-estoque-controle .lista-estoque .card-estoque .img-produto-estoque > figure img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

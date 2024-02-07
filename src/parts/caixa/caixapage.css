@@ -1,0 +1,236 @@
+.container-Caixa {
+    margin: 1rem;
+    border-radius: 20px;
+    padding: 0 1rem;
+    height: 95vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: var(--bg-color);
+}
+
+.container-Caixa .CaixaPainel {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: space-evenly;
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.container-Caixa .CaixaPainel h4,
+.container-Caixa .CaixaPainel h3 {
+    text-transform: uppercase;
+    font-family: var(--font-poppins);
+}
+
+.container-Caixa .CaixaPainel h4 span,
+.container-Caixa .CaixaPainel h3 span {
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.container-Caixa .CaixaPainel .time-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: center;
+    padding-left: 1rem;
+    border-left: 1px solid var(--bg-color);
+    gap: 1rem 0;
+    font-family: var(--font-roboto);
+}
+
+.container-Caixa .CaixaPainel .time-user:last-child {
+    cursor: pointer;
+}
+
+.container-Caixa .DashCaixa {
+    margin-top: 1rem;
+    color: black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.container-Caixa .DashCaixa .search-bar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container-Caixa .DashCaixa .search-bar input {
+    width: 100%!important;
+    border: 1px solid var(--bg-color);
+    border-radius: 5px 0 0 5px ;
+    width: 50%;
+    padding: .6rem;
+    outline: none;
+}
+
+.container-Caixa .DashCaixa .search-bar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+}
+
+.container-Caixa .DashCaixa .search-bar button figure {
+    width: 20px;
+    height: 20px;
+}
+
+.container-Caixa .DashCaixa .search-bar button figure img {
+    height: 100%;
+    width: 100%;
+}
+
+.container-Caixa .DashCaixa > div {
+    width: 100%;
+}
+
+.container-Caixa .DashCaixa div .title-caixa {
+    display: flex;
+    align-items: flex-start;
+    color: white;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    font-family: var(--font-poppins);
+    justify-content: flex-start;
+}
+
+.container-Caixa .DashCaixa .carrinho-pedidos{
+    border-radius: 10px;
+    padding: 1rem;
+    overflow-y: scroll;
+    width: 100%;
+    background-color: white;
+    height: 65vh;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: black;
+    background-color: white;
+    height: 100%;
+    align-items: flex-start;
+    border-radius: 10px 10px 0 0;
+    padding: 1rem;
+    margin-left: 1rem;
+    justify-content: space-between;
+}
+
+.container-Caixa .DashCaixa .time-venda {
+    display: flex;
+    font-family: var(--font-roboto);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1rem;
+    gap: 0 1rem;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .action-buttons {
+    width: 100%;
+    display: flex;
+    gap: 0 1rem;
+    padding-top: 1.2rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .action-buttons button {
+    padding: 1rem;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .action-buttons button:last-child {
+    background-color: crimson;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .info-compras {
+    display: flex;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    gap: 1rem 0;
+    flex-direction: column;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .info-compras input {
+    outline: none;
+    padding: .6rem;
+    margin-left: 10px;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .listaPagamento h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--font-poppins);
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .listaPagamento ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--bg-color);
+    padding: .7rem;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .listaPagamento li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .2rem;
+}
+
+.container-Caixa .DashCaixa .resultadoCompra .listaPagamento li figure {
+    margin-left: 10px;
+}
+
+@media (max-width:1146px) {
+
+    .container-Caixa {
+        height: 100%;
+        flex-wrap: wrap;
+    }
+
+    .container-Caixa .DashCaixa {
+        flex-wrap: wrap;
+        gap: 1rem 0;
+    }
+
+    .container-Caixa .DashCaixa .resultadoCompra {
+        margin-left: 0;
+    }
+}
+
+@media (max-width:580px) {
+
+    .container-Caixa .DashCaixa .carrinho-pedidos {
+        width: 100%;
+    }
+}

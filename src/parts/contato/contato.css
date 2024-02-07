@@ -1,11 +1,12 @@
 #contato-page {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
-    padding: 2rem 0;
+    padding: 4rem 0;
     position: relative;
 }
 
@@ -19,7 +20,7 @@
 
 #contato-page .bg-top img {
     width: 100%;
-    height: 200px;
+    height: 120px;
     rotate: 180deg;
 }
 
@@ -27,15 +28,16 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    gap: 1rem 0;
     align-items: flex-start;
     justify-content: space-around;
-    padding: 2rem 0;
 }
 
 #contato-page .container-contato .container-info-map {
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    margin-top: 5rem;
 }
 
 #contato-page .container-contato .container-info-map .text-info-map {
@@ -138,6 +140,7 @@
     border-radius: 20px;
     background-color: white;
     padding: .4rem 2rem;
+    margin-bottom: 7rem;
  }
 
 #contato-page .alert-open p {
