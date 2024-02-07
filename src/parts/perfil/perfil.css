@@ -9,9 +9,9 @@
 }
 
 #Perfil .Caixar {
-    position: absolute;
-    bottom: 60px;
-    right: 60px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
     background-color: var(--button-color);
     border-radius: 50px;
     padding: 1rem;
@@ -32,7 +32,6 @@
     position: relative;
     width: 100%;
 }
-
 
 
 #Perfil .Dash .menu-bar figure {
@@ -159,7 +158,8 @@
     }
     #Perfil .Dash.show {
         width: 50%;
-        height: 100%;
+        height: 95%;
+
         border-radius: 20px;
         transition: all .35s ease;
         z-index: 9999;
@@ -216,5 +216,14 @@
     #Perfil .Dash.show .menu-bar {
         left: 20px;
         top: 20px;
+    }
+}
+
+@media (max-width: 572px) {
+    #Perfil .Dash.show {
+        width: 70%;
+        border-radius: 20px;
+        transition: all .35s ease;
+        z-index: 9999;
     }
 }

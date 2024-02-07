@@ -78,3 +78,8 @@ img {
     align-items: center;
     justify-content: center;
 }
+
+.App-header .option-header a {
+    opacity: 0;
+    visibility: hidden;
+}

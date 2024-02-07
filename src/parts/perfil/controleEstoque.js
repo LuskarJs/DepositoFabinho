@@ -78,12 +78,60 @@ const ControleEstoque = () => {
                     </button>
                 </form>
                 <div className="addProduto">
-                    <button onClick={() => SetExibiAdd(true)}>Adicionar Produto ao Estoque</button>
+                    <button onClick={() => SetExibiAdd(true)}>Adicionar Produto</button>
                 </div>
             </div>
             <div className="container-estoque-controle">
                 <ul className="lista-estoque">
-                <li className="card-estoque">
+                    <li className="card-estoque">
+                            <div className="img-produto-estoque">
+                                <figure>
+                                    <img src={imgExemplo} alt="" />
+                                </figure>
+                                <div className="action-buttons">
+                                    <button>
+                                        <figure>
+                                            <img src={troca} alt="botao de alterar imagem" />
+                                        </figure>
+                                    </button>
+                                    <button >
+                                        <figure>
+                                            <img src={deletar} alt="botao para deletar produto do Estoque" />
+                                        </figure>
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="info-produto-estoque">
+                                <ul>
+                                    <li>
+                                        <p>
+                                        Cerveja Brahman   
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            Quantia em Estoque 
+                                        </p><span>15</span>
+                                    </li>
+                                    <li>
+                                        <p>
+                                        Vendidos no Hoje 
+                                        </p><span>17</span>
+                                    </li>
+                                    <li>
+                                        <p>
+                                        Vendidos na Semana
+                                        </p> <span>52</span>
+                                    </li>
+                                    <li>
+                                        <p>
+                                        Vendidos no Ultimo Mês
+                                        </p> <span>102</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="card-estoque">
                         <div className="img-produto-estoque">
                             <figure>
                                 <img src={imgExemplo} alt="" />
@@ -111,22 +159,22 @@ const ControleEstoque = () => {
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span></span>
+                                    </p><span>15</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span></span>
+                                    </p><span>17</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span></span>
+                                    </p> <span>52</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span></span>
+                                    </p> <span>102</span>
                                 </li>
                             </ul>
                         </div>
@@ -159,22 +207,22 @@ const ControleEstoque = () => {
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span></span>
+                                    </p><span>15</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span></span>
+                                    </p><span>17</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span></span>
+                                    </p> <span>52</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span></span>
+                                    </p> <span>102</span>
                                 </li>
                             </ul>
                         </div>
@@ -207,22 +255,22 @@ const ControleEstoque = () => {
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span></span>
+                                    </p><span>15</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span></span>
+                                    </p><span>17</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span></span>
+                                    </p> <span>52</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span></span>
+                                    </p> <span>102</span>
                                 </li>
                             </ul>
                         </div>
@@ -255,22 +303,22 @@ const ControleEstoque = () => {
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span></span>
+                                    </p><span>15</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span></span>
+                                    </p><span>17</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span></span>
+                                    </p> <span>52</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span></span>
+                                    </p> <span>102</span>
                                 </li>
                             </ul>
                         </div>
@@ -303,22 +351,22 @@ const ControleEstoque = () => {
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span></span>
+                                    </p><span>15</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span></span>
+                                    </p><span>17</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span></span>
+                                    </p> <span>52</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span></span>
+                                    </p> <span>102</span>
                                 </li>
                             </ul>
                         </div>
@@ -351,457 +399,27 @@ const ControleEstoque = () => {
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span></span>
+                                    </p><span>15</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span></span>
+                                    </p><span>17</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span></span>
+                                    </p> <span>52</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li><li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
+                                    </p> <span>102</span>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span></span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                    
                 </ul>
                 <div className='container-filter'>
 

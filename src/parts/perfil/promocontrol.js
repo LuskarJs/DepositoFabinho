@@ -8,9 +8,9 @@ const ControlPromo = () => {
         <section className='Control-container'>
             <div className="container-Promo">
                 <div className='button-action'>
-                    <button>Adiciona Promoção</button>
+                    <button>Promoção</button>
                     <button type="upload">
-                        <p>Adiciona Promoção Img </p>
+                        <p>Promoção Img </p>
                         <span> 
                             <figure>
                                 <img src={upload} alt="icone de upload" />
@@ -27,10 +27,6 @@ const ControlPromo = () => {
             <div className="container-promo">
                 <ul className="filter-promo">
                     <li>Promoção Defina de Semana</li>
-                    <li>Promoção De Carnaval</li>
-                    <li>Promoção De Carnaval</li>
-                    <li>Promoção De Carnaval</li>
-                    <li>Promoção De Carnaval</li>
                     <li>Promoção De Carnaval</li>
                 </ul>
                 <ul className="listPromos">
@@ -80,8 +76,8 @@ const ControlPromo = () => {
                             </div>      
                         </div>
                         <div className="action-buttons">
-                            <button>Editar Promoção</button>
-                            <button>Remover Promoção</button>
+                            <button>Salva</button>
+                            <button>Remover</button>
                         </div>
                     </li>
                     <li className="card-promo">
@@ -105,8 +101,8 @@ const ControlPromo = () => {
                             </div>      
                         </div>
                         <div className="action-buttons">
-                            <button>Editar Promoção</button>
-                            <button>Remover Promoção</button>
+                            <button>Salva</button>
+                            <button>Remover</button>
                         </div>
                     </li>
                     <li className="card-promo">
@@ -130,83 +126,8 @@ const ControlPromo = () => {
                             </div>      
                         </div>
                         <div className="action-buttons">
-                            <button>Editar Promoção</button>
-                            <button>Remover Promoção</button>
-                        </div>
-                    </li>
-                    <li className="card-promo">
-                        <div className="img-produto">
-                            <figure>
-                                <img src={upload} alt="icone de upload" />
-                            </figure>
-                        </div>
-                        <div className="info-produto">
-                            <div className="info-put">
-                                <label>Nome do Produto</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info-put">
-                                <label>Preço Original</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info-put">
-                                <label>Preço de Promoção</label>
-                                <input type="text" />
-                            </div>      
-                        </div>
-                        <div className="action-buttons">
-                            <button>Editar Promoção</button>
-                            <button>Remover Promoção</button>
-                        </div>
-                    </li>
-                    <li className="card-promo">
-                        <div className="img-produto">
-                            <figure>
-                                <img src={upload} alt="icone de upload" />
-                            </figure>
-                        </div>
-                        <div className="info-produto">
-                            <div className="info-put">
-                                <label>Nome do Produto</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info-put">
-                                <label>Preço Original</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info-put">
-                                <label>Preço de Promoção</label>
-                                <input type="text" />
-                            </div>      
-                        </div>
-                        <div className="action-buttons">
-                            <button>Editar Promoção</button>
-                            <button>Remover Promoção</button>
-                        </div>
-                    </li>
-                    <li className="card-promo">
-                        <div className="img-produto">
-                            <figure>
-                                <img src={upload} alt="icone de upload" />
-                            </figure>
-                        </div>
-                        <div className="info-produto">
-                            <div className="info-put">
-                                <label>Nome do Produto</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info-put">
-                                <label>Preço Original</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info-put">
-                                <label>Preço de Promoção</label>
-                                <input type="text" />
-                            </div>      
-                        </div>
-                        <div className="action-buttons">
-                            <button>Editar Promoção</button>
-                            <button>Remover Promoção</button>
+                            <button>Salva</button>
+                            <button>Remover</button>
                         </div>
                     </li>
                 </ul>

@@ -78,6 +78,12 @@
     font-size: 1.2rem;
 }
 
+@media (max-width: 702px) {
+    .gerenciarContato form .input-form .input-div label {
+        font-size: .8rem;
+    }
+}
+
 .gerenciarContato form .input-form .input-div input {
     padding: .8rem .6rem;
     outline: none;
@@ -99,6 +105,28 @@
     padding-left: 10px;
 }
 
+@media (max-width: 702px) {
+    .gerenciarContato form .input-form .check-input label {
+
+        font-size: .8rem;
+    }
+
+    .gerenciarContato form .input-form {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem 0;
+        justify-content: flex-start;
+    }
+
+    .gerenciarContato form .input-form .check-input,
+    .gerenciarContato form .input-form .input-div {
+        width: 100%;
+    }
+
+        
+}
+
 .gerenciarContato form .input-form .check-input input[type="checkbox"] {
     padding: .9rem;
     width: 35px;
@@ -108,7 +136,7 @@
 
 .gerenciarContato form .button-container {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: .4rem 1rem;
 }
 

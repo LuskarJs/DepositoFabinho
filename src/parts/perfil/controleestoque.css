@@ -117,6 +117,7 @@
 .container-controle-estoque .Filter-container {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
@@ -144,8 +145,9 @@
 }
 
 .container-controle-estoque .Filter-container form {
-    gap: 0 .4rem;
+    gap: 1rem .4rem;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .container-controle-estoque .Filter-container form button {
@@ -169,6 +171,12 @@
     outline: none;
     border: none;
     margin-right: .2rem;
+}
+
+@media (max-width: 430px) {
+    .container-controle-estoque .Filter-container input {
+    width: 100%;
+    }
 }
 
 .container-controle-estoque .container-estoque-controle {

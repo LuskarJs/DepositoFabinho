@@ -18,7 +18,7 @@ const GerenciarContato = () => {
                     </div>
                     <div className="check-input">
                         <input type="checkbox" />
-                        <label>Mostrar no Site</label>
+                        <label>Mostrar</label>
                     </div>
                 </div>
                 <div className="input-form">
@@ -28,7 +28,7 @@ const GerenciarContato = () => {
                     </div>
                     <div className="check-input">
                         <input type="checkbox" />
-                        <label>Mostrar no Site</label>
+                        <label>Mostrar</label>
                     </div>
                 </div>
                 <div className="input-form">
@@ -38,7 +38,7 @@ const GerenciarContato = () => {
                     </div>
                     <div className="check-input">
                         <input type="checkbox" />
-                        <label>Mostrar no Site</label>
+                        <label>Mostrar</label>
                     </div>
                 </div>
                 <div className="input-form">
@@ -48,7 +48,7 @@ const GerenciarContato = () => {
                     </div>
                     <div className="check-input">
                         <input type="checkbox" />
-                        <label>Mostrar no Site</label>
+                        <label>Mostrar</label>
                     </div>
                 </div>
                 <div className="input-form">
@@ -58,7 +58,7 @@ const GerenciarContato = () => {
                     </div>
                     <div className="check-input">
                         <input type="checkbox" />
-                        <label>Mostrar no Site</label>
+                        <label>Mostrar</label>
                     </div>
                 </div>
                 <div className="button-container">
