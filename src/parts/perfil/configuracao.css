@@ -1,0 +1,136 @@
+.configuracaoSection {
+    margin: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.configuracaoSection .list-configuracao {
+    display: flex;
+    width: 100%;
+    gap: 1.2rem 0;
+    font-family: var(--font-poppins);
+    list-style: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.configuracaoSection .list-configuracao li {
+    align-items: center;
+    width: 100%;
+    transition: height .10s ease;
+    overflow: hidden;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.configuracaoSection .list-configuracao li.show {
+    height: 100%;
+    transition: height .35s ease;
+    padding: .4rem;
+    border: 1px solid var(--bg-color);
+}
+
+.configuracaoSection .list-configuracao li p {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--bg-color);
+    cursor: pointer;
+    display: inline;
+}
+
+.configuracaoSection .list-configuracao li.show p {
+    background-color: var(--bg-color);
+    color: white;
+    padding: 0 .5rem;
+} 
+
+.configuracaoSection .list-configuracao li .input-config {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: .4rem;
+    padding: .5rem ;
+    border-radius: 5px;
+}
+
+.configuracaoSection .list-configuracao li .input-config label {
+    margin-right: 10px;
+}
+
+.configuracaoSection .list-configuracao li .input-config input {
+    outline: none;
+    padding: .4rem;
+    border-radius: 5px;
+    border: 2px solid var(--button-color);
+}
+
+.configuracaoSection .list-configuracao li .input-config button {
+    padding: .6rem 2rem;
+    text-transform: uppercase;
+    color: white;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.configuracaoSection .list-configuracao .horario .input-config {
+    gap: .4rem;
+}
+
+.configuracaoSection .list-configuracao .horario .input-config input {
+    border-radius: 5px!important;
+}
+
+.configuracaoSection .list-configuracao .horario .input-config input[type="range"] {
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.configuracaoSection .list-configuracao .horario .input-config input[type="range"]::after {
+    position: absolute;
+    content: "Aberto";
+    display: inline;
+    text-transform: uppercase;
+    background-color: green;
+    color: white;
+    padding: .5rem;
+    left: 0;
+}
+
+.configuracaoSection .list-configuracao .horario .input-config input[type="range"]::before {
+    position: absolute;
+    content: "Fechar";
+    display: inline;
+    text-transform: uppercase;
+    background-color: red;
+    right: 0;
+    color: white;
+    padding: .5rem;
+}
+
+.configuracaoSection .list-configuracao .horario button {
+    border-radius: 5px!important;
+}
+
+@media (max-width:1250px) {
+    .configuracaoSection {
+        height: 94%!important;
+        overflow-y: scroll;
+    }
+
+    .configuracaoSection .list-configuracao {
+        text-align: right;
+    }
+    
+}

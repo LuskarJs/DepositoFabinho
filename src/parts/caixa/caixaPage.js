@@ -11,12 +11,13 @@ const Caixa = () => {
         <section className="container-Caixa">
             <div className="CaixaPainel">
                 <div className="info-user">
-                    <h3>Nome do Caixa: <span>Fabio liuz</span></h3>
+                    <h3>Caixa: <span>Fabio liuz</span></h3>
                     <h4>Inicio Caixa R$: <span>113,00</span></h4>
+                    <h4>Caixa Atual R$: <span>1513,00</span></h4>
                 </div>
                 <div className="time-user">
-                    <p>Inicio<span>14:30</span></p>
-                    <p>Encerramento<span>14:30</span></p>
+                    <p>Inicio :<span>14:30</span></p>
+                    <p>Encerramento :<span>14:30</span></p>
                 </div>
                 <div className="time-user">
                     <p>Caixa Aberto<span className="circle"></span></p>

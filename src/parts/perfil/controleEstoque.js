@@ -6,6 +6,7 @@ import deletar from "../img/botao-apagar.png";
 import upload from "../img/upload-na-nuvem.png";
 import imgExemplo from "../img/—Pngtree—beer bottle brown drink beer_6223437.png";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const ControleEstoque = () => {
     const [ExibiAddProduto,SetExibiAdd] = useState(false);
@@ -13,7 +14,14 @@ const ControleEstoque = () => {
     function AddProduto() {
 
         return (
-            <div className="container-addProduto">
+            <motion.div
+            transition={{
+                duration: .35,
+            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="container-addProduto">
                 <form>
                     <div className="container-form">
                         <div className="img-produtoAdd">
@@ -53,27 +61,29 @@ const ControleEstoque = () => {
                         </div>
                     </div>
                     <div className="button-action">
-                        <button>Adicionar Produto ao Estoque</button>
+                        <button>Adicionar Produto</button>
                         <button>Fechar</button>
                     </div>
                 </form>
-            </div>
+            </motion.div>
         )
     }
 
     return (
-        <section className="container-controle-estoque">
+        <motion.section
+        transition={{
+            duration: .35,
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0 }}
+        className="container-controle-estoque">
             <div className="Filter-container">
                 <form>
                     <input type="text" placeholder="Branhma" />
                     <button>
                         <figure>
                         <img src={search} alt="icone de procura" />
-                        </figure>
-                    </button>
-                    <button>
-                        <figure>
-                        <img src={filter} alt="icone de filtro" />
                         </figure>
                     </button>
                 </form>
@@ -426,7 +436,7 @@ const ControleEstoque = () => {
                 </div>
             </div>
             {ExibiAddProduto && <AddProduto />}
-        </section>
+        </motion.section>
     )
 }
 

@@ -4,6 +4,18 @@
     border-radius: 20px;
     padding: 1rem;
     position: relative;
+    overflow: hidden;
+}
+
+.gerenciar-funcionario .title-table {
+    color: var(--bg-color);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: .8rem;
+}
+
+.gerenciar-funcionario .title-table .title-table-scroll {
+    overflow-x: auto;
 }
 
 .gerenciar-funcionario .telacheia {
@@ -23,6 +35,8 @@
 
 .gerenciar-funcionario .add-Search {
     display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
@@ -80,13 +94,6 @@
     justify-content: flex-start;
 }
 
-.gerenciar-funcionario table h4 {
-    color: var(--bg-color);
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    margin-bottom: .8rem;
-}
-
 .gerenciar-funcionario table thead {
     display: flex;
     align-items: center;
@@ -118,10 +125,35 @@ tr {
 }
 
 tr:hover {
-    background-color: #f5f5f5;
+    background-color: var(--bg-color);
+    color: white;
 }
 
 thead,
 tbody {
     width: 100%;
+}
+
+
+@media (max-width:895px) {
+
+    .gerenciar-funcionario .add-Search {
+        justify-content: flex-end;
+    }
+    
+.gerenciar-funcionario {
+    height: 95%!important;
+}
+
+    .gerenciar-funcionario table {
+        overflow: scroll;
+    }
+
+    .gerenciar-funcionario th {
+        font-size: .8rem;
+    }
+
+    .gerenciar-funcionario td {
+        font-size: .7rem;
+    }
 }

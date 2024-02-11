@@ -1,10 +1,18 @@
 import "./gerenciadorContato.css";
 import interrogacao from "../img/sinal-de-interrogacao.png";
+import { motion } from 'framer-motion';
 
 const GerenciarContato = () => {
 
     return (
-        <section className="gerenciarContato">
+        <motion.section
+        transition={{
+            duration: .35,
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0 }}
+        className="gerenciarContato">
             <div className='help'>
                 <figure>
                     <img src={interrogacao} alt='icone de interrogação para tirar duvida' />
@@ -65,7 +73,7 @@ const GerenciarContato = () => {
                     <button>Salvar Contatos</button>
                 </div>
             </form>
-        </section>
+        </motion.section>
     )
 }
 

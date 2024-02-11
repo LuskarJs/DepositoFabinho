@@ -2,11 +2,19 @@ import "./funcionario.css";
 import iconAdd from "../img/carteira-de-identidade.png";
 import iconSearch from "../img/big-search-len.png";
 import telaCheia from "../img/tela-cheia.png";
+import { motion } from "framer-motion";
 
 const FuncionarioPage = () => {
 
     return (
-        <section className="gerenciar-funcionario">
+        <motion.section
+        transition={{
+            duration: .35,
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0 }}
+        className="gerenciar-funcionario">
             <div className="add-Search">
                 <div className="addFuncionario">
                     <button>Adicionar funcionario
@@ -24,20 +32,24 @@ const FuncionarioPage = () => {
                     </button>
                 </div>
             </div>
-
-            <table>
+            <div className="title-table">
                 <h4>Lista de Funcionários</h4>
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Cargo</th>
-                        <th>Número de Telefone</th>
-                        <th>Email</th>
-                        <th>Horário de Entrada</th>
-                        <th>Horário de Saída</th>
-                    </tr>
-                </thead>
+                <div className="title-table-scroll">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Entrada</th>
+                            <th>Saída</th>
+                        </tr>
+                    </thead>
+                </div>
+            </div>
+            <table>
+               
                 <tbody>
                     <tr>
                         <td>001</td>
@@ -118,7 +130,7 @@ const FuncionarioPage = () => {
                     <img src={telaCheia} alt="icone de tela cheia" />
                 </figure>
             </div>
-        </section>
+        </motion.section>
     )
 }
 

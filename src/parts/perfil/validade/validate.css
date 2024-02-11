@@ -1,0 +1,86 @@
+.container-validate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 2rem;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.548);
+}
+
+.container-validate form {
+    display: flex;
+    gap: 1rem 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    padding: 2rem;
+    margin: 2rem;
+    height: 100%;
+    overflow: auto;
+    border-radius: 20px;
+}
+
+.container-validate form .text-validate {
+    text-align: center;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-top: 2rem;
+}
+
+.container-validate form .text-validate h3 {
+    margin: .7rem 0;
+}
+
+.container-validate form .text-validate p {
+    color: grey;
+}
+
+.container-validate form .text-validate small {
+    font-size: .7rem;
+}
+
+.container-validate form .form-put {
+    display: flex;
+  
+    flex-direction: column;
+    width: 100%;
+    font-family: var(--font-poppins);
+}
+
+.container-validate form .form-put input {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: .7rem;
+}
+
+.container-validate form .form-put img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.container-validate form .FT {
+     align-items: center;
+    justify-content: center;
+}
+
+.container-validate form .button-action {
+    width: 100%;
+}
+
+.container-validate form .button-action button {
+    background-color: var(--bg-color);
+    border: none;
+    width: 100%;
+    color: white;
+    padding: .7rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}

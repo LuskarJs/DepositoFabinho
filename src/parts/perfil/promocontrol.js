@@ -1,11 +1,19 @@
 import './promocontrol.css';
 import interrogacao from "../img/sinal-de-interrogacao.png";
 import upload from "../img/upload-na-nuvem.png";
+import { motion } from 'framer-motion';
 
 const ControlPromo = () => {
 
     return (
-        <section className='Control-container'>
+        <motion.section
+        transition={{
+            duration: .35,
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0 }}
+        className='Control-container'>
             <div className="container-Promo">
                 <div className='button-action'>
                     <button>Promoção</button>
@@ -133,7 +141,7 @@ const ControlPromo = () => {
                 </ul>
             </div>
             
-        </section>
+        </motion.section>
     )
 }
 

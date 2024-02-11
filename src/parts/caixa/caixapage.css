@@ -42,6 +42,8 @@
     align-items: flex-start;
     text-align: left;
     justify-content: center;
+    text-decoration: none;
+    color: black;
     padding-left: 1rem;
     border-left: 1px solid var(--bg-color);
     gap: 1rem 0;
@@ -50,6 +52,8 @@
 
 .container-Caixa .CaixaPainel .time-user:last-child {
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-Caixa .DashCaixa {
@@ -226,11 +230,23 @@
     .container-Caixa .DashCaixa .resultadoCompra {
         margin-left: 0;
     }
+
+    .container-Caixa .CaixaPainel {
+        justify-content: flex-start;
+    }
 }
 
 @media (max-width:580px) {
 
     .container-Caixa .DashCaixa .carrinho-pedidos {
         width: 100%;
+    }
+
+    .info-user {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 }
