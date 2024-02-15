@@ -10,6 +10,40 @@
     position: relative;
 }
 
+.confirmar-exclusao-modal {
+    position: fixed;
+    top: calc(100% / 3);
+    box-shadow: 0px 0px 10px black;
+    left: calc(100% / 2);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    font-family: var(--font-poppins);
+}
+
+.confirmar-exclusao-modal .botoes-opcoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding-top: 1rem;
+}
+
+.confirmar-exclusao-modal .botoes-opcoes button {
+    padding: .4rem 1rem;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid var(--bg-color);
+    border-radius: 5px;
+}
+
+.confirmar-exclusao-modal .botoes-opcoes button:last-child {
+    background-color: crimson;
+    color: white;
+    border: none;
+}
+
 .container-controle-estoque .container-addProduto {
     display: flex;
     align-items: center;

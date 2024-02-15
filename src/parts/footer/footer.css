@@ -80,6 +80,36 @@ footer .container-menu ul li:hover {
     font-family: var(--font-poppins);
 }
 
+.container-notification ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.container-notification ul li {
+    padding: .6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.container-notification ul li figure {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    padding: .2rem;
+    margin-bottom: 1rem;
+}
+
+.container-notification ul li figure img {
+    width: 100%;
+    height: 100%;
+}
+
 .container-notification h3 {
     background-color: white;
     color: var(--bg-color);

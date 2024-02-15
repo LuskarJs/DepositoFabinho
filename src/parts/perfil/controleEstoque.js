@@ -1,73 +1,70 @@
+import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { getCookie, deleteCookie } from "./cookie/cookiHandler";
 import "./controleestoque.css";
 import search from "../img/big-search-len.png";
-import filter from "../img/filtro.png";
+import deletar from "../img//botao-apagar.png";
 import troca from "../img/troca.png";
-import deletar from "../img/botao-apagar.png";
-import upload from "../img/upload-na-nuvem.png";
+import AddProduto from "./addProduto";
 import imgExemplo from "../img/—Pngtree—beer bottle brown drink beer_6223437.png";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
 
 const ControleEstoque = () => {
-    const [ExibiAddProduto,SetExibiAdd] = useState(false);
+    const [exibirConfirmarExclusao, setExibirConfirmarExclusao] = useState(false);
+    const [produtoASerExcluido, setProdutoASerExcluido] = useState(null);
+    const [exibirAddProduto, setExibirAddProduto] = useState(false);
+    const [produtos, setProdutos] = useState([]);
 
-    function AddProduto() {
+    useEffect(() => {
+        const carregarProdutos = () => {
+            const produtosSalvos = [];
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
+            let idCount = 0; // Contador para atribuir IDs únicos aos produtos
+            cookieArray.forEach(cookie => {
+                const [name, value] = cookie.split('=');
+                if (name.trim().startsWith('ProdutosAdicionados/')) {
+                    const produto = JSON.parse(value);
+                    produtosSalvos.push({ id: idCount++, ...produto }); // Adicione o ID ao objeto do produto
+                }
+            });
+            setProdutos(produtosSalvos);
+        };
+    
+        carregarProdutos();
+    }, []);
+    
 
+    const editarProduto = (produto) => {
+        setExibirAddProduto(produto);
+    };
+
+    const confirmarExclusao = () => {
+        const novosProdutos = produtos.filter(item => item.id !== produtoASerExcluido.id);
+        setProdutos(novosProdutos);
+        deleteCookie(`produto_${produtoASerExcluido.id}`);
+        setExibirConfirmarExclusao(false);
+        setProdutoASerExcluido(null);
+    };
+
+    const abrirModalExclusao = (produto) => {
+        setExibirConfirmarExclusao(true);
+        setProdutoASerExcluido(produto);
+    };
+
+    function ConfirmarExclusaoModal({ onClose }) {
         return (
-            <motion.div
-            transition={{
-                duration: .35,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            className="container-addProduto">
-                <form>
-                    <div className="container-form">
-                        <div className="img-produtoAdd">
-                            <figure>
-                                <img src={upload} alt="icone para upar a imagem do produto que vai ser exibida nos cards de produtos" />
-                            </figure>
-                        </div>
-                        <div className="info-AddProduto">
-                            <div className="input-container">
-                                <label>Nome Produto</label>
-                                <input type="text" placeholder="Brahman" />
-                            </div>
-                            <div className="input-container">
-                                <label>Categoria</label>
-                                <input type="text" placeholder="Ex: Bebida" />
-                            </div>
-                            <div className="input-container">
-                                <label>SubCategoria</label>
-                                <input type="text" placeholder="Ex: bebida não alcoolica" />
-                            </div>
-                            <div className="input-container">
-                                <label>Tipo</label>
-                                <input type="text" placeholder="Ex: Garrafa" />
-                            </div>
-                            <div className="input-container">
-                                <label>Unidade do Produto</label>
-                                <input type="number" placeholder="Ex: 15" />
-                            </div>
-                            <div className="input-container">
-                                <label>Ml ou Grama do Produto</label>
-                                <input type="number" placeholder="Ex: 15" />
-                            </div>
-                            <div className="input-container">
-                                <label>Preço do Produto</label>
-                                <input type="number" placeholder="Ex: 15,49" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="button-action">
-                        <button>Adicionar Produto</button>
-                        <button>Fechar</button>
-                    </div>
-                </form>
-            </motion.div>
-        )
+            <div className="confirmar-exclusao-modal">
+                <p>Deseja realmente excluir este produto?</p>
+                <div className="botoes-opcoes">
+                    <button onClick={confirmarExclusao}>Sim, excluir</button>
+                    <button onClick={onClose}>Cancelar</button>
+                </div>
+            </div>
+        );
     }
+
+    
+
 
     return (
         <motion.section
@@ -88,354 +85,71 @@ const ControleEstoque = () => {
                     </button>
                 </form>
                 <div className="addProduto">
-                    <button onClick={() => SetExibiAdd(true)}>Adicionar Produto</button>
+                    <button onClick={() => setExibirAddProduto(true)}>Adicionar Produto</button>
                 </div>
             </div>
             <div className="container-estoque-controle">
                 <ul className="lista-estoque">
-                    <li className="card-estoque">
+                {produtos.map(produto => (
+                        <li key={produto.id} className="card-estoque">
                             <div className="img-produto-estoque">
                                 <figure>
-                                    <img src={imgExemplo} alt="" />
+                                    <img src={produto.imagem} alt={produto.nome} />
                                 </figure>
                                 <div className="action-buttons">
-                                    <button>
+                                    <button onClick={() => editarProduto(produto)}>
                                         <figure>
                                             <img src={troca} alt="botao de alterar imagem" />
                                         </figure>
                                     </button>
-                                    <button >
+                                    <button onClick={() => abrirModalExclusao(produto)}>
                                         <figure>
                                             <img src={deletar} alt="botao para deletar produto do Estoque" />
                                         </figure>
                                     </button>
                                 </div>
                             </div>
-                            <div className="info-produto-estoque">
-                                <ul>
-                                    <li>
-                                        <p>
-                                        Cerveja Brahman   
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            Quantia em Estoque 
-                                        </p><span>15</span>
-                                    </li>
-                                    <li>
-                                        <p>
-                                        Vendidos no Hoje 
-                                        </p><span>17</span>
-                                    </li>
-                                    <li>
-                                        <p>
-                                        Vendidos na Semana
-                                        </p> <span>52</span>
-                                    </li>
-                                    <li>
-                                        <p>
-                                        Vendidos no Ultimo Mês
-                                        </p> <span>102</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
                         <div className="info-produto-estoque">
                             <ul>
                                 <li>
                                     <p>
-                                    Cerveja Brahman   
+                                    {produto.nomeProduto}  
                                     </p>
+                                    <span> {produto.categoria}</span>
+                                    <span> {produto.tipo}</span>
                                 </li>
                                 <li>
                                     <p>
                                         Quantia em Estoque 
-                                    </p><span>15</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span>17</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span>52</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span>102</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
                                     </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span>15</span>
+                                    <span>
+                                        {produto.unidadeProduto}  
+                                    </span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Hoje 
-                                    </p><span>17</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span>52</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span>102</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
                                     </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span>15</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span>17</span>
+                                    <span>0</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos na Semana
-                                    </p> <span>52</span>
+                                    </p> <span>0</span>
                                 </li>
                                 <li>
                                     <p>
                                     Vendidos no Ultimo Mês
-                                    </p> <span>102</span>
+                                    </p> <span>0</span>
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span>15</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span>17</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span>52</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span>102</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span>15</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span>17</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span>52</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span>102</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="card-estoque">
-                        <div className="img-produto-estoque">
-                            <figure>
-                                <img src={imgExemplo} alt="" />
-                            </figure>
-                            <div className="action-buttons">
-                                <button>
-                                    <figure>
-                                        <img src={troca} alt="botao de alterar imagem" />
-                                    </figure>
-                                </button>
-                                <button >
-                                    <figure>
-                                        <img src={deletar} alt="botao para deletar produto do Estoque" />
-                                    </figure>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="info-produto-estoque">
-                            <ul>
-                                <li>
-                                    <p>
-                                    Cerveja Brahman   
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Quantia em Estoque 
-                                    </p><span>15</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Hoje 
-                                    </p><span>17</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos na Semana
-                                    </p> <span>52</span>
-                                </li>
-                                <li>
-                                    <p>
-                                    Vendidos no Ultimo Mês
-                                    </p> <span>102</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    
+                    </li>  
+                    ))}
                 </ul>
-                <div className='container-filter'>
-
-                </div>
             </div>
-            {ExibiAddProduto && <AddProduto />}
+            {exibirAddProduto && <AddProduto />}
+            {exibirConfirmarExclusao && <ConfirmarExclusaoModal onClose={() => setExibirConfirmarExclusao(false)} />}
         </motion.section>
     )
 }

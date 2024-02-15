@@ -4,8 +4,43 @@ import seta from "../img/seta-direitaG.png";
 import mapa from "../img/mapa.png";
 import vector from "../img/Vector1.svg";
 import moto from "../img/entrega-rapida.png";
+import { useState, useEffect } from 'react';
 
 const Contact = () => {
+
+    const [endereco, setEndereco] = useState('');
+    const [pontoReferencia, setPontoReferencia] = useState('');
+    const [statusLoja, setStatusLoja] = useState('');
+
+    useEffect(() => {
+        const getStatusLojaFromCookie = () => {
+            const cookieData = document.cookie.split(';').map(cookie => cookie.trim());
+            cookieData.forEach(cookie => {
+                const [key, value] = cookie.split('=');
+                if (key === 'statusLoja') {
+                    setStatusLoja(value);
+                }
+            });
+        };
+    
+        getStatusLojaFromCookie();
+    }, []);
+
+    useEffect(() => {
+        const getEnderecoPontoReferenciaFromCookie = () => {
+            const cookieData = document.cookie.split(';').map(cookie => cookie.trim());
+            cookieData.forEach(cookie => {
+                const [key, value] = cookie.split('=');
+                if (key === 'enderecoReferencia') {
+                    setEndereco(value);
+                } else if (key === 'pontoReferencia') {
+                    setPontoReferencia(value);
+                }
+            });
+        };
+
+        getEnderecoPontoReferenciaFromCookie();
+    }, []);
 
     return (
         <section id="contato-page">
@@ -20,8 +55,8 @@ const Contact = () => {
                         <img src={mapa} alt="mapa visto no google maps" />
                     </figure>
                     <div className='text-info-map'>
-                        <h3>Endereço: <p>Rua Itacuruçá Lote 3, Quadra 40</p></h3>
-                        <h4>Ponto de referencia: <span> de Frente com a Assembleia de Deus </span></h4>
+                    <h3>Endereço: <p>{endereco}</p></h3>
+                        <h4>Ponto de referencia: <span>{pontoReferencia}</span></h4>
                         <button>
                             Conferir no Mapa
                             <img src={seta} alt="icone de seta apontando para direita" />
@@ -42,7 +77,7 @@ const Contact = () => {
                 </div>
             </div>
             <div className="alert-open">
-                <p><span>Aberto </span> Agora</p>
+                <p><span>{statusLoja}</span> Agora</p>
                 <div className="circle"></div>
             </div>
             <div className="entrega">

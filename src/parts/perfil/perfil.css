@@ -9,7 +9,7 @@
     overflow: auto;
 }
 
-#Perfil .Caixar {
+#Perfil .option-conta {
     position: absolute;
     bottom: 30px;
     right: 30px;
@@ -18,6 +18,18 @@
     padding: 1rem;
     cursor: pointer;
     z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem 0;
+}
+
+#Perfil .option-conta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .4rem;
+    background-color: white;
+    border-radius: 50%;
 }
 
 #Perfil .Dash {
