@@ -3,6 +3,7 @@ import logo from "../img/logoFabio-removebg-preview.png";
 import Perfil from "../img/perfil.png";
 import Carrinho from '../img/carrinho.png';
 import Menu from '../img/menu.png';
+import {motion} from "framer-motion";
 import Cookies from 'js-cookie';
 import CarrinhoCompra from "../header/carrinho";
 import { useState, useEffect } from "react";
@@ -33,7 +34,14 @@ function Header({ contadorItens}) {
             <figure>
               <img src={logo} className="Logo" alt="logo" />
             </figure>
-            <ul className={menuopen ? "" : "show"}>
+            <motion.ul
+            transition={{
+              duration: .35,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+             className={menuopen ? "" : "show"}>
               <li>
                 <Link to="/" href="#home">
                   Inicio
@@ -54,7 +62,7 @@ function Header({ contadorItens}) {
               Contatos
                 </a>        
               </li>
-            </ul>
+            </motion.ul>
           </nav>
           <div className="option-header">
             <Link to="/Login">

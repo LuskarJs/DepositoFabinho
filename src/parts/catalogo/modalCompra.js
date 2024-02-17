@@ -45,25 +45,28 @@ const ModalCompra = ({ isOpen, onClose, carrinhoItens }) => {
     const carrinhoSalvo = Cookies.get("carrinho");
 
     if (userData && carrinhoSalvo) {
-        const userDataObj = JSON.parse(userData);
-        const carrinhoAtualizado = JSON.parse(carrinhoSalvo);
+      const userDataObj = JSON.parse(userData);
+      const carrinhoAtualizado = JSON.parse(carrinhoSalvo);
 
-        let mensagemWhatsApp = `Olá! Gostaria de fazer um pedido.\n`;
+      const metodoPagamento = userDataObj.metodoPagamento;
 
-        if (userDataObj.nome) mensagemWhatsApp += `Nome: ${userDataObj.nome}\n`;
-        if (userDataObj.endereco) mensagemWhatsApp += `Endereço: ${userDataObj.endereco}\n`;
-        if (userDataObj.telefone) mensagemWhatsApp += `Telefone: ${userDataObj.telefone}\n`;
-        if (userDataObj.descricao) mensagemWhatsApp += `Descrição: ${userDataObj.descricao}\n`;
+      let mensagemWhatsApp = `Olá! Gostaria de fazer um pedido.\n`;
+      if (userDataObj.nome) mensagemWhatsApp += `Nome: ${userDataObj.nome}\n`;
+      if (userDataObj.endereco) mensagemWhatsApp += `Endereço: ${userDataObj.endereco}\n`;
+      if (userDataObj.telefone) mensagemWhatsApp += `Telefone: ${userDataObj.telefone}\n`;
+      if (userDataObj.descricao) mensagemWhatsApp += `Descrição: ${userDataObj.descricao}\n`;
 
-        mensagemWhatsApp += "\nProdutos no Pedido:\n";
-        carrinhoAtualizado.forEach((produto, index) => {
-            mensagemWhatsApp += `${index + 1}. ${produto.nome || ''} - ${produto.ml || ''}ml - R$ ${produto.preco || ''}\n`;
-        });
+      mensagemWhatsApp += `Método de Pagamento: ${metodoPagamento}\n`;
 
-        window.open(`https://api.whatsapp.com/send?phone=5521971447401&text=${encodeURIComponent(mensagemWhatsApp)}`);
+      mensagemWhatsApp += "\nProdutos no Pedido:\n";
+      carrinhoAtualizado.forEach((produto, index) => {
+        mensagemWhatsApp += `${index + 1}. ${produto.nome || ''} - ${produto.ml || ''}ml - R$ ${produto.preco || ''}\n`;
+      });
 
-        Cookies.remove("carrinho");
-        window.location.reload();
+      window.open(`https://api.whatsapp.com/send?phone=5521971447401&text=${encodeURIComponent(mensagemWhatsApp)}`);
+
+      Cookies.remove("carrinho");
+      window.location.reload();
     }
 };
 
@@ -88,6 +91,15 @@ const ModalCompra = ({ isOpen, onClose, carrinhoItens }) => {
                 onChange={handleChange}
                 required
               />
+            </div>
+            <div className="form-group">
+              <label htmlFor="metodoPagamento">Método de Pagamento:</label>
+              <select id="metodoPagamento" name="metodoPagamento" value={formData.metodoPagamento} onChange={handleChange} required>
+                <option value="">Selecione o método de pagamento</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+                <option value="Dinheiro">Dinheiro</option>
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="endereco">Endereço:</label>
@@ -129,6 +141,7 @@ const ModalCompra = ({ isOpen, onClose, carrinhoItens }) => {
                 name="descricao"
                 value={formData.descricao}
                 onChange={handleChange}
+                placeholder="Preencha troco para quanto deseja"
                 required
               />
             </div>

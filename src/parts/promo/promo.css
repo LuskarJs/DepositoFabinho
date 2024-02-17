@@ -214,3 +214,10 @@
 #promo-page .promo-product .card-product .action-button button:first-child:Hover {
     scale: .9;
 }
+
+.no-promotions-message {
+    font-family: var(--font-roboto);
+    color: white;
+    text-transform: uppercase;
+}
+

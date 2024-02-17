@@ -8,7 +8,7 @@ import search from '../img/big-search-len.png';
 
 const Catalogo = ({ contadorItens, setContadorItens }) => {
 
-    const AllProdutos = [
+   const AllProdutos = [
         {
           nome: "Coca Cola",
           preco: 3.50,
