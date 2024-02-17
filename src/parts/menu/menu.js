@@ -3,6 +3,7 @@ import menuicon from '../img/folheto.png';
 import "./menu.css";
 import "./mediaquery.css";
 import MarcaSlider from './sliderjs';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
 
@@ -99,12 +100,12 @@ const Menu = () => {
                     </li>
                 </ul>
             </div>
-            <div className="button-menu">
+            <Link to="/Catalogo" className="button-menu">
                 <button>
                     Ver Catalogo 
                     <img src={menuicon} alt="icone do menu" /> 
                 </button>
-            </div>
+            </Link>
         </section>
     )
 

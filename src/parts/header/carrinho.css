@@ -1,0 +1,60 @@
+.carrinho-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 2.3rem;
+    right: 0;
+    z-index: 99999;
+}
+
+.CarrinhoProduto .carrinho-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: .7rem 0;
+    width: 350px;
+    height: 450px;
+    padding: 1rem;
+    font-family: var(--font-poppins);
+    border-radius: 0 0 10px;
+    box-shadow: 0px 9px 10px rgba(0, 0, 0, 0.692);
+}
+
+.CarrinhoProduto .carrinho-container .container-carrinho {
+    width: 100%;
+}
+
+.CarrinhoProduto .carrinho-container .title-carrinho {
+    background-color: var(--bg-color);
+    color: white;
+    padding: .4rem 1rem; 
+    margin-bottom: 1rem;
+}
+
+.CarrinhoProduto .carrinho-container .listaCarrinho ul {
+    list-style: none;
+    overflow-y: scroll;
+    height: 200px;
+    width: 100%;
+}
+
+.CarrinhoProduto .carrinho-container .listaCarrinho ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.CarrinhoProduto .carrinho-container .listaCarrinho ul li span {
+    margin: .2rem .6rem;
+}
+
+.CarrinhoProduto .carrinho-container .button-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

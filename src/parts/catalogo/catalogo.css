@@ -1,0 +1,294 @@
+.catalogo-container {
+    display: grid;
+    align-items: flex-start;
+    gap: .5rem;
+    justify-content: center;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bg-color);
+}
+
+.catalogo-container > div {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.catalogo-container div .searchBar {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+}
+
+.catalogo-container div .searchBar input {
+    width: 100%;
+    outline: none;
+    padding: .6rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.catalogo-container div .searchBar button {
+    padding: .4rem 1.2rem;
+    color: white;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 5px ;
+    margin-left: 10px;
+    text-transform: uppercase;
+    transition: all .35s ease;
+    border: 1px solid var(--button-color);
+    cursor: pointer;
+}
+
+.catalogo-container div .searchBar button:hover {
+    background-color: var(--bg-color);
+    border: 1px solid var(--button-color);
+    transition: all .35s ease;
+}
+
+.catalogo-container div .searchBar button figure {
+    width: 20px;
+    height: 20px;
+}
+
+.catalogo-container div .searchBar button figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.catalogo-container .lista-catalogo {
+    background-color: white;
+    border-radius: 20px;
+    overflow-y: scroll;
+    height: 100%;
+    width: 95%;
+    margin: 1rem 0;
+}
+
+.catalogo-container .lista-catalogo ul {
+    list-style: none; 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    padding: 1rem;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo {
+    box-shadow: 0px 0px 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-poppins);
+    gap: .5rem;
+    justify-content: center;
+    padding: .5rem ;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .price-card {
+    width: 100%;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .price-card h5{
+    font-size: 1rem;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .action-buttons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .action-buttons button {
+    border: none;
+    border-radius: 5px;
+    padding: .4rem .7rem;
+    cursor: pointer;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .action-buttons button:last-child {
+    padding: .7rem;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    background-color: green;
+    color: white;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .info-card {
+    margin-left: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .info-card h3 span {
+    margin-left: 5px;
+}
+
+
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .info-card h4 {
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .card-img {
+    width: 90%;
+    margin: .5rem;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .card-img figure {
+    height: 100px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--color-grey);
+    padding: .4rem;
+}
+
+.catalogo-container .lista-catalogo ul .Card-catalogo .card-img figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.catalogo-container .filter-container {
+    background-color: rgb(235, 233, 233);
+    border-radius: 10px;
+    color: black;
+    margin: 1rem;
+    height: 95%;
+    overflow-y: scroll;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+
+.catalogo-container .filter-container::-webkit-scrollbar{
+    width: 10px;
+    margin-right: .5rem;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.catalogo-container .filter-container::-webkit-scrollbar-thumb {
+    background-color: var(--button-color)!important;
+    border-radius: 5px;
+}
+
+.catalogo-container .filter-container ul {
+    list-style: none;
+}
+
+.catalogo-container .filter-container ul li {
+    font-family: var(--font-poppins);
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: .3rem;
+}
+
+.catalogo-container .filter-container ul li > ul {
+    margin-left: 1rem;
+}
+
+.catalogo-container .filter-container ul li > ul li {
+    text-transform: none!important;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+@media (max-width: 1038px) {
+    .catalogo-container .lista-catalogo {
+        height: 100%!important;
+    }
+    .catalogo-container {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogo-container > div {
+        align-items: center;
+    }
+
+    .catalogo-container .filter-container ul {
+        display: flex;
+        align-items: center;
+    }
+
+    .catalogo-container .filter-container {
+        overflow-x: auto;
+    }
+
+    .catalogo-container .filter-container {
+        background-color: transparent;
+    }
+
+    .catalogo-container .filter-container::-webkit-scrollbar{
+        width: 2px;
+        height: 8px;
+    }
+
+    .catalogo-container .filter-container ul li{
+        background-color: var(--button-color);
+        padding: .4rem;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .catalogo-container .filter-container ul li ul {
+        margin: 0;
+        
+    }
+
+    .catalogo-container .filter-container ul li ul li {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .catalogo-container .filter-container ul li ul li:Hover {
+        background-color: white;
+        color: var(--bg-color);
+    }
+
+    .catalogo-container div .searchBar {
+        width: 100%;
+        margin-top: 1rem;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+}
+
+@media (max-width: 858px) {
+    .catalogo-container .lista-catalogo ul {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 708px) {
+    .catalogo-container .lista-catalogo ul {
+        grid-template-columns: 1fr 1fr ;
+    }
+}
+
+@media (max-width: 500px) {
+    .catalogo-container .lista-catalogo ul {
+        grid-template-columns: 1fr ;
+    }
+}

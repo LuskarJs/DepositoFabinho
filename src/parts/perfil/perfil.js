@@ -34,7 +34,6 @@ const Perfil = () => {
             localStorage.setItem("firstTime", "false");
         }
 
-        // Carregar nome do cookie quando o componente é montado
         const nomeCookie = getCookie("nomeUsuario");
         if (nomeCookie) {
             setNomeCompleto(nomeCookie);

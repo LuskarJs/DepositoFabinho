@@ -1,0 +1,141 @@
+.modal-compra {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    height: 100%;
+    background-color: rgba(10, 29, 69, 0.7); /* Cor de fundo */
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+  }
+  
+  .modal-content {
+    height: 100%;
+    width: 350px;
+    overflow-y: scroll;
+    background-color: #d9d9d9; 
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    margin: 1rem 0;
+  }
+  
+.modal-compra .close {
+    color: #546791; 
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+.modal-compra .form-group {
+    display: flex;
+    margin: .6rem 0;
+    flex-direction: column;
+    font-family: var(--font-poppins);
+}
+
+.modal-compra .form-group label {
+    text-transform: uppercase;
+    font-size: .9rem;
+}
+  
+.modal-compra .form-group input {
+    padding: .4rem;
+    border: none;  
+    outline: none;
+    border-radius: 5px;
+}
+
+.modal-compra .form-group textarea {
+    resize: none;
+    height: 70px;
+    outline: none;
+    padding: .4rem;
+}
+
+.modal-compra form h3 {
+    font-size: .9rem;
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+}
+
+.modal-compra form .carrinho-count {
+    font-family: var(--font-poppins);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-compra form .carrinho-count span {
+    font-size: .8rem;
+}
+
+.modal-compra form ul {
+    list-style: none;
+    font-family: var(--font-poppins);
+    margin: 1rem 0;
+    overflow-y: scroll;
+    border-radius: 5px;
+    height: 90px;
+    width: 100%;
+}
+.modal-compra form ul li {
+    display: flex;
+    width: 100%;
+    font-size: .9rem;
+    text-transform: uppercase;
+    padding: .5rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.modal-compra form ul li:nth-child(odd) {
+    background-color: var(--color-grey); 
+}
+
+.modal-compra form ul li:nth-child(even) {
+    background-color: white; 
+}
+
+.modal-compra form ul li span {
+    text-align: center;
+    padding: 0 .6rem;
+    border-right: 2px solid var(--bg-color);
+}
+
+.modal-compra form .button-group {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.modal-compra form .button-group button {
+    border: none;
+    border-radius: 5px;
+    padding: .6rem 1.4rem;
+    transition: all .35s ease;
+    cursor: pointer;
+    color: white;
+    background-color: var(--bg-color);
+}
+
+.modal-compra form .button-group button:first-child:hover {
+    background-color: var(--button-color);
+    transition: all .35s ease;
+}
+
+.modal-compra form .button-group button:last-child {
+    background-color: crimson;
+}
+
+@media (max-width: 394px) {
+  .modal-content {
+    width: 95%;
+}
+}
