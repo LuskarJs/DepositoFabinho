@@ -17,7 +17,7 @@ const User = mongoose.model('Login', userSchema);
 app.use(express.json());
 app.use(cors());
 
-app.post('/Login', async (req, res) => {
+app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -27,18 +27,17 @@ app.post('/Login', async (req, res) => {
 
     if (user && user.password === password) {
       console.log('Login bem-sucedido:', username); 
-      res.json({ username , isAdmin });
+      res.json({ autenticado: true, username: user.username, isAdmin: user.isAdmin }); // Enviando dados do usuário autenticado
     } else {
-      // Se as credenciais não forem válidas, enviar uma resposta de erro
       console.log('Credenciais inválidas para:', username); 
-      res.status(401).json({ error: 'Credenciais inválidas' }); 
+      res.status(401).json({ autenticado: false, error: 'Credenciais inválidas' }); 
     }
   } catch (error) {
-    // Se ocorrer algum erro durante o processo de autenticação, enviar uma resposta de erro
     console.error('Erro ao autenticar usuário:', error);
-    res.status(500).json({ error: 'Erro ao autenticar usuário' });
+    res.status(500).json({ autenticado: false, error: 'Erro ao autenticar usuário' });
   }
 });
+
 
 app.get('/perfil', (req, res) => {
   const autenticado = req.query.autenticado === 'true';
