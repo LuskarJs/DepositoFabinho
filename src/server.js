@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoURI = process.env.MONGODB_URI; // Usando a variável de ambiente
+const mongoURI = "mongodb+srv://LuskarJS:XOgNkkrOZoa3Y0qD@cluster0.oesip.mongodb.net/Login";
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   isAdmin: Boolean 
 });
 
-const User = mongoose.model('Users.Lucas', userSchema);
+const User = mongoose.model('Users', userSchema);
 
 app.use(express.json());
 app.use(cors());
@@ -23,16 +23,21 @@ app.post('/login', async (req, res) => {
   try {
     console.log('Tentativa de login:', { username, password }); 
 
+    // Procurar um usuário com o nome de usuário fornecido
     const user = await User.findOne({ username }); 
 
+    // Verificar se o usuário foi encontrado e se a senha corresponde
     if (user && user.password === password) {
       console.log('Login bem-sucedido:', username); 
-      res.json({ autenticado: true, username: user.username, isAdmin: user.isAdmin });
+      // Se as credenciais forem válidas, enviar dados do usuário para o cliente
+      res.json({ username: user.username, isAdmin: user.isAdmin });
     } else {
+      // Se as credenciais não forem válidas, enviar uma resposta de erro
       console.log('Credenciais inválidas para:', username); 
-      res.json({ autenticado: false });
+      res.status(401).json({ error: 'Credenciais inválidas' }); 
     }
   } catch (error) {
+    // Se ocorrer algum erro durante o processo de autenticação, enviar uma resposta de erro
     console.error('Erro ao autenticar usuário:', error);
     res.status(500).json({ error: 'Erro ao autenticar usuário' });
   }
@@ -48,10 +53,7 @@ app.get('/perfil', (req, res) => {
   }
 });
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(mongoURI)
 .then(() => console.log('Conectado ao MongoDB Atlas'))
 .catch(err => console.error('Erro ao conectar ao MongoDB Atlas:', err));
 

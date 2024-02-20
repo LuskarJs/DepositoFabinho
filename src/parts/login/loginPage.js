@@ -32,6 +32,7 @@ const Login = () => {
                 navigate(`/perfil?username=${data.username}&isAdmin=${data.isAdmin}`);
             } else {
                 setErro('Credenciais inválidas');
+            console.log("erro")
             }
         } catch (error) {
             console.error('Erro ao fazer login:', error);
