@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoURI = 'mongodb+srv://LuskarJS:XOgNkkrOZoa3Y0qD@cluster0.oesip.mongodb.net/Users';
+const mongoURI = process.env.MONGODB_URI; // Usando a variável de ambiente
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -41,8 +41,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
-
 app.get('/perfil', (req, res) => {
   const autenticado = req.query.autenticado === 'true';
   if (autenticado) {
@@ -52,7 +50,6 @@ app.get('/perfil', (req, res) => {
     res.redirect('/login');
   }
 });
-
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
