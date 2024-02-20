@@ -23,16 +23,15 @@ app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    console.log('Tentativa de login:', { username, password }); // Log dos dados de login recebidos
+    console.log('Tentativa de login:', { username, password }); 
 
-    const user = await User.findOne({ username }); // Mudança aqui para findOne
+    const user = await User.findOne({ username }); 
 
-    // Verificar se o usuário existe e se a senha está correta
     if (user && user.password === password) {
-      console.log('Login bem-sucedido:', username); // Log do login bem-sucedido
+      console.log('Login bem-sucedido:', username); 
       res.json({ autenticado: true, username: user.username, isAdmin: user.isAdmin });
     } else {
-      console.log('Credenciais inválidas para:', username); // Log das credenciais inválidas
+      console.log('Credenciais inválidas para:', username); 
       res.json({ autenticado: false });
     }
   } catch (error) {
