@@ -10,7 +10,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("funcionou");
 
         try {
             const response = await fetch('/login', {

@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoURI = "mongodb+srv://LuskarJS:XOgNkkrOZoa3Y0qD@cluster0.oesip.mongodb.net/Login";
+const mongoURI = process.env.MONGODB_URI;
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -12,25 +12,22 @@ const userSchema = new mongoose.Schema({
   isAdmin: Boolean 
 });
 
-const User = mongoose.model('Users', userSchema);
+const User = mongoose.model('Login', userSchema);
 
 app.use(express.json());
 app.use(cors());
 
-app.post('/login', async (req, res) => {
+app.post('/Login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
     console.log('Tentativa de login:', { username, password }); 
 
-    // Procurar um usuário com o nome de usuário fornecido
     const user = await User.findOne({ username }); 
 
-    // Verificar se o usuário foi encontrado e se a senha corresponde
     if (user && user.password === password) {
       console.log('Login bem-sucedido:', username); 
-      // Se as credenciais forem válidas, enviar dados do usuário para o cliente
-      res.json({ username: user.username, isAdmin: user.isAdmin });
+      res.json({ username , isAdmin });
     } else {
       // Se as credenciais não forem válidas, enviar uma resposta de erro
       console.log('Credenciais inválidas para:', username); 
