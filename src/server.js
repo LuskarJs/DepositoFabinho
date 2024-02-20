@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = `mongodb+srv://LuskarJS:XOgNkkrOZoa3Y0qD@cluster0.oesip.mongodb.net/?retryWrites=true&w=majority`;
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -18,26 +18,35 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-
+  const { username, password, id } = req.body;
+  
   try {
     console.log('Tentativa de login:', { username, password }); 
 
+    // Verificando se o id recebido é igual a '65d4370aed069e2eac33ffe0'
+    if (id !== '65d4370aed069e2eac33ffe0') {
+      console.log('Id inválido'); 
+      return res.status(401).json({ error: 'Id inválido' });
+    }
+
+    // Procurando um usuário com o username fornecido
     const user = await User.findOne({ username }); 
 
-    if (user && user.password === password) {
+    // Verificando se o usuário foi encontrado e se a senha e isAdmin correspondem
+    if (user && user.password === password && user.isAdmin) {
       console.log('Login bem-sucedido:', username); 
-      res.json({ autenticado: true, username: user.username, isAdmin: user.isAdmin }); // Enviando dados do usuário autenticado
+      res.json({ username, isAdmin: user.isAdmin });
     } else {
+      // Se as credenciais não forem válidas, enviar uma resposta de erro
       console.log('Credenciais inválidas para:', username); 
-      res.status(401).json({ autenticado: false, error: 'Credenciais inválidas' }); 
+      res.status(401).json({ error: 'Credenciais inválidas' }); 
     }
   } catch (error) {
+    // Se ocorrer algum erro durante o processo de autenticação, enviar uma resposta de erro
     console.error('Erro ao autenticar usuário:', error);
-    res.status(500).json({ autenticado: false, error: 'Erro ao autenticar usuário' });
+    res.status(500).json({ error: 'Erro ao autenticar usuário' });
   }
 });
-
 
 app.get('/perfil', (req, res) => {
   const autenticado = req.query.autenticado === 'true';
