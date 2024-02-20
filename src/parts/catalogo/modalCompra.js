@@ -65,7 +65,6 @@ const ModalCompra = ({ isOpen, onClose, carrinhoItens }) => {
 
       window.open(`https://api.whatsapp.com/send?phone=5521971447401&text=${encodeURIComponent(mensagemWhatsApp)}`);
 
-      Cookies.remove("carrinho");
       window.location.reload();
     }
 };

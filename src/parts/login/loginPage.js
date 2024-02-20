@@ -2,43 +2,54 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
-const Conta = [
-    {
-        Login: "Admin",
-        Senha: "Admin123"
-    }
-];
-
 const Login = () => {
-    const [login, setLogin] = useState('');
-    const [senha, setSenha] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [erro, setErro] = useState('');
     const navigate = useNavigate(); 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("funcionou");
 
-        const usuario = Conta.find(conta => conta.Login === login && conta.Senha === senha);
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password }) // Enviando username e password para o servidor
+            });
 
-        if (usuario) {
-            // Credenciais corretas, navegar para o perfil
-            navigate('/Perfil');
-        } else {
-            setErro('Credenciais inválidas');
+            if (!response.ok) {
+                throw new Error('Erro ao fazer login');
+            }
+
+            const data = await response.json();
+
+            if (data.autenticado) {
+                // Redirecionar para a página de perfil com base nas informações recebidas do servidor
+                navigate(`/perfil?username=${data.username}&isAdmin=${data.isAdmin}`);
+            } else {
+                setErro('Credenciais inválidas');
+            }
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            setErro('Erro ao fazer login. Por favor, tente novamente mais tarde.');
         }
     };
 
     return (
         <section id="Login">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="input-form">
                     <label>Login</label>
-                    <input type="text" placeholder="Digite seu Login" value={login} onChange={(e) => setLogin(e.target.value)} />
+                    <input type="text" id="username" name='username' placeholder="Digite seu Login" value={username} onChange={(e) => setUsername(e.target.value)} />
                     <small>Preencha os campos</small>
                 </div>
                 <div className="input-form">
                     <label>Senha</label>
-                    <input type="password" placeholder="Digite sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <small>Preencha os campos</small>
                 </div>
                 <div className="or-container">
@@ -50,7 +61,7 @@ const Login = () => {
                     <p>Esqueci a senha</p>
                 </div>
                 {erro && <div className="erro">{erro}</div>}
-                <button type='submit' onClick={handleSubmit}>Fazer Login</button>
+                <button type='submit'>Fazer Login</button>
             </form>
         </section>
     );
