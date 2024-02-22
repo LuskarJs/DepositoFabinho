@@ -1,12 +1,9 @@
 import "./gerenciadorContato.css";
 import { useState } from "react";
-import { setCookie } from "./cookie/cookiHandler"; // Importe a função setCookie para salvar cookies
-
 import interrogacao from "../img/sinal-de-interrogacao.png";
 import { motion } from 'framer-motion';
 
 const GerenciarContato = () => {
-
     const [contatos, setContatos] = useState({
         email: '',
         telefone: '',
@@ -20,9 +17,26 @@ const GerenciarContato = () => {
         setContatos({ ...contatos, [name]: value });
     };
 
-    const handleSalvarContatos = (e) => {
+    const handleSalvarContatos = async (e) => {
         e.preventDefault();
-        setCookie('contatos', JSON.stringify(contatos)); // Salvar os contatos no cookie
+
+        try {
+            const response = await fetch('http://localhost:5000/adicionarContatos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(contatos)
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao salvar contatos. Por favor, tente novamente mais tarde.');
+            }
+
+            console.log('Contatos salvos com sucesso!');
+        } catch (error) {
+            console.error('Erro ao salvar contatos:', error);
+        }
     };
 
     return (

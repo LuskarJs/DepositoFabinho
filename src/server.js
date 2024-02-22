@@ -1,75 +1,86 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const routes = require('./routes');
+const conectarAoCluster = require('./config/dbConfig');
+const jwt = require('jsonwebtoken');
+const Contato = require('./models/Contato');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
-const mongoURI = `mongodb+srv://LuskarJS:XOgNkkrOZoa3Y0qD@cluster0.oesip.mongodb.net/?retryWrites=true&w=majority`;
 
-const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  isAdmin: Boolean 
-});
-
-const User = mongoose.model('Login', userSchema);
+ const jwtSecret = 'sua_chave_secreta_aqui'; // Substitua pela sua chave secreta JWT
 
 app.use(express.json());
 app.use(cors());
-
-app.post('/login', async (req, res) => {
-  const { username, password, id } = req.body;
-  
-  try {
-    console.log('Tentativa de login:', { username, password }); 
-
-    // Verificando se o id recebido é igual a '65d4370aed069e2eac33ffe0'
-    if (id !== '65d4370aed069e2eac33ffe0') {
-      console.log('Id inválido'); 
-      return res.status(401).json({ error: 'Id inválido' });
-    }
-
-    // Procurando um usuário com o username fornecido
-    const user = await User.findOne({ username }); 
-
-    // Verificando se o usuário foi encontrado e se a senha e isAdmin correspondem
-    if (user && user.password === password && user.isAdmin) {
-      console.log('Login bem-sucedido:', username); 
-      res.json({ username, isAdmin: user.isAdmin });
-    } else {
-      // Se as credenciais não forem válidas, enviar uma resposta de erro
-      console.log('Credenciais inválidas para:', username); 
-      res.status(401).json({ error: 'Credenciais inválidas' }); 
-    }
-  } catch (error) {
-    // Se ocorrer algum erro durante o processo de autenticação, enviar uma resposta de erro
-    console.error('Erro ao autenticar usuário:', error);
-    res.status(500).json({ error: 'Erro ao autenticar usuário' });
-  }
-});
-
-app.get('/perfil', (req, res) => {
-  const autenticado = req.query.autenticado === 'true';
-  if (autenticado) {
-    const { username, isAdmin } = req.query;
-    res.send(`Bem-vindo ao seu perfil, ${username}! Você é ${isAdmin ? 'um administrador' : 'um usuário'}.`);
-  } else {
-    res.redirect('/login');
-  }
-});
-
-mongoose.connect(mongoURI)
-.then(() => console.log('Conectado ao MongoDB Atlas'))
-.catch(err => console.error('Erro ao conectar ao MongoDB Atlas:', err));
-
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.use('/perfil', (req, res, next) => {
+    const token = req.headers.authorization;
+    console.log('Authorization Header:', token);
+    if (!token) {
+        return res.status(401).json({ error: 'Token não fornecido' });
+    }
+
+    try {
+        jwt.verify(token, jwtSecret, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ error: 'Token inválido' });
+            }
+            req.user = decoded;
+            next();
+        });
+    } catch (error) {
+        console.error('Erro ao verificar o token:', error);
+        return res.status(500).json({ error: 'Erro ao verificar o token' });
+    }
+});
+
+app.use('/', routes);
+
+app.post('/login', (req, res) => {
+    const { token } = req.body;
+
+    if (!token) {
+        return res.status(400).json({ error: 'Token não fornecido' });
+    }
+
+    localStorage.setItem('authToken', token);
+
+    res.status(200).json({ message: 'Login bem-sucedido' });
+});
+
+app.post('/adicionarContatos', async (req, res) => {
+    try {
+        const { email, telefone, whatsapp, facebook, instagram } = req.body;
+
+        // Crie um novo contato com os dados recebidos
+        const novoContato = new Contato({
+            email,
+            telefone,
+            whatsapp,
+            facebook,
+            instagram
+        });
+
+        // Salve o novo contato no banco de dados
+        await novoContato.save();
+
+        res.status(201).json({ message: 'Contato adicionado com sucesso' });
+    } catch (error) {
+        console.error('Erro ao adicionar contato:', error);
+        res.status(500).json({ error: 'Erro ao adicionar contato' });
+    }
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+conectarAoCluster()
+    .then(db => {
+        app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+    })
+    .catch(error => {
+        console.error('Erro ao iniciar o servidor:', error);
+    });

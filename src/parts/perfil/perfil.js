@@ -1,18 +1,17 @@
-import "./perfil.css";
-import React, { useState, useEffect } from "react";
-import trocaFoto from "../img/trocar-camera.png";
-import fotoPerfil from "../img/perfilDefault.jpg";
-import menu from "../img/menu.png";
-import CaixaIcon from "../img/caixa-eletronico.png";
-import home from "../img/botao-home.png";
-import GerenciarContato from "./gerenciadorContato";
-import ControleEstoque from "./controleEstoque";
-import FuncionarioPage from "./funcionarioPage";
-import ControlPromo from "./promocontrol";
-import { getCookie } from "./cookie/cookiHandler";
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Validate from "./validade/validate";
-import Configuracao from "./configuracao";
+import './perfil.css';
+import trocaFoto from '../img/trocar-camera.png';
+import fotoPerfil from '../img/perfilDefault.jpg';
+import menu from '../img/menu.png';
+import CaixaIcon from '../img/caixa-eletronico.png';
+import home from '../img/botao-home.png';
+import GerenciarContato from './gerenciadorContato';
+import ControleEstoque from './controleEstoque';
+import FuncionarioPage from './funcionarioPage';
+import ControlPromo from './promocontrol';
+import Validate from './validade/validate';
+import Configuracao from './configuracao';
 import ModalDesconectar from "./modalSair";
 
 const Perfil = () => {
@@ -21,69 +20,66 @@ const Perfil = () => {
     const [optionDash, SetoptionDash] = useState("Estoque");
     const [OpenMenu, SetOpenMenu] = useState(false);
     const [nomeCompleto, setNomeCompleto] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
     const navigate = useNavigate();
-
-    const handleOptionClick = (option) => {
-        SetoptionDash(option);
-    };
-
+  
     useEffect(() => {
-        const isFirstTime = localStorage.getItem("firstTime") === null;
-        if (isFirstTime) {
-            setShowValidation(true);
-            localStorage.setItem("firstTime", "false");
-        }
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+          navigate('/login'); 
+      } else {
+          const decodedToken = parseJwt(token);
+          setNomeCompleto(decodedToken.username);
+          setIsAdmin(decodedToken.isAdmin);
+      }
+  }, [navigate]);
 
-        const nomeCookie = getCookie("nomeUsuario");
-        if (nomeCookie) {
-            setNomeCompleto(nomeCookie);
-        }
-    }, []);
+  const parseJwt = (token) => {
+      try {
+          return JSON.parse(atob(token.split('.')[1]));
+      } catch (e) {
+          return null;
+      }
+  };
 
-    const handleSave = (formData) => {
-        const novoNome = formData.nomeCompleto;
+  const handleOptionClick = (option) => {
+      SetoptionDash(option);
+  };
 
-        // Atualizar o estado nomeCompleto com o novo nome
-        setNomeCompleto(novoNome);
+  const handleLogout = () => {
+      localStorage.removeItem('authToken');
+      navigate('/login');
+  };
 
-        // Salvar o novo nome no localStorage e no cookie
-        localStorage.setItem("nomeCompleto", novoNome);
-        document.cookie = `nomeCompleto=${novoNome}; path=/`;
+  const openModalDesconectar = () => {
+    setShowModalDesconectar(true);
+  };
 
-        setShowValidation(false);
-    };
+  const closeModalDesconectar = () => {
+    setShowModalDesconectar(false);
+  };
 
-
-    const handleLogout = () => {
-        navigate("/Login")
-    };
-
-    const openModalDesconectar = () => {
-        setShowModalDesconectar(true);
-    };
-
-    const closeModalDesconectar = () => {
-        setShowModalDesconectar(false);
-    };
-
-    const ChooseOption = () => {
-        switch (optionDash) {
-            case "Contato":
-                return <GerenciarContato />;
-            case "Estoque":
-                return <ControleEstoque />;
-            case "Funcionario":
-                return <FuncionarioPage />
-            case "ControlPromo":
-                return <ControlPromo />
-            case "Configuracao":
-                return <Configuracao />
-        }
+  const ChooseOption = () => {
+    switch (optionDash) {
+      case "Contato":
+        return <GerenciarContato />;
+      case "Estoque":
+        return <ControleEstoque />;
+      case "Funcionario":
+        return <FuncionarioPage />;
+      case "ControlPromo":
+        return <ControlPromo />;
+      case "Configuracao":
+        return <Configuracao />;
+      default:
+        return null;
     }
+  };
 
-    const HandleOpen = () => {
-        SetOpenMenu(!OpenMenu)
-    }
+  const HandleOpen = () => {
+    SetOpenMenu(!OpenMenu);
+  };
+
 
     return (
         <section id="Perfil">
@@ -134,7 +130,7 @@ const Perfil = () => {
                     </ul>
                 </nav>
             </div>
-            {showValidation && <Validate onSave={handleSave} />}
+            {showValidation && <Validate />}
             {showModalDesconectar && <ModalDesconectar onClose={closeModalDesconectar} onLogout={handleLogout} />}
             {ChooseOption()}
         </section>

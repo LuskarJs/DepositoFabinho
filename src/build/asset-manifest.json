@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3281e13b.css",
-    "main.js": "/static/js/main.f69ef5ea.js",
+    "main.js": "/static/js/main.c0f29b11.js",
     "static/media/bg.png": "/static/media/bg.ce76c735c4343e26574b.png",
     "static/media/—Pngtree—beer bottle brown drink beer_6223437.png": "/static/media/—Pngtree—beer bottle brown drink beer_6223437.df68a82b966b177a2a3d.png",
     "static/media/perfilDefault.jpg": "/static/media/perfilDefault.6d2aa01067858a224914.jpg",
@@ -32,10 +32,10 @@
     "index.html": "/index.html",
     "static/media/Vector1.svg": "/static/media/Vector1.d85d86268efca7a429378462cb542c18.svg",
     "main.3281e13b.css.map": "/static/css/main.3281e13b.css.map",
-    "main.f69ef5ea.js.map": "/static/js/main.f69ef5ea.js.map"
+    "main.c0f29b11.js.map": "/static/js/main.c0f29b11.js.map"
   },
   "entrypoints": [
     "static/css/main.3281e13b.css",
-    "static/js/main.f69ef5ea.js"
+    "static/js/main.c0f29b11.js"
   ]
 }

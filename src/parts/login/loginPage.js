@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
@@ -8,34 +8,40 @@ const Login = () => {
     const [erro, setErro] = useState('');
     const navigate = useNavigate(); 
 
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            // Se o token estiver presente, redirecione o usuário para a página de perfil
+            navigate('/perfil');
+        }
+    }, [navigate]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('http://localhost:5000/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }) // Enviando username e password para o servidor
+                body: JSON.stringify({ username, password }), // Envia as credenciais no corpo da solicitação
             });
-
+    
             if (!response.ok) {
-                throw new Error('Erro ao fazer login');
+                throw new Error('Erro ao fazer login. Por favor, verifique suas credenciais e tente novamente.');
             }
-
+    
             const data = await response.json();
-
-            if (data.autenticado) {
-                // Redirecionar para a página de perfil com base nas informações recebidas do servidor
-                navigate(`/perfil?username=${data.username}&isAdmin=${data.isAdmin}`);
-            } else {
-                setErro('Credenciais inválidas');
-            console.log("erro")
-            }
+    
+            // Armazenar o token JWT no localStorage
+            localStorage.setItem('authToken', data.token);
+    
+            // Redirecionar para a página de perfil após o login bem-sucedido
+            navigate('/perfil');
         } catch (error) {
             console.error('Erro ao fazer login:', error);
-            setErro('Erro ao fazer login. Por favor, tente novamente mais tarde.');
+            setErro(error.message);
         }
     };
 
