@@ -10,7 +10,7 @@ async function conectarAoCluster() {
     try {
         const client = new MongoClient(uri);
         await client.connect();
-        const users = await client.db().collection('usuarios').findOne({ username : "FabinhoAndrade"});
+        
         console.log('Conectado ao cluster MongoDB');
         return client.db();
     } catch (error) {
