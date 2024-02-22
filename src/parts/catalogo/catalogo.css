@@ -278,8 +278,8 @@
 @media (max-width: 858px) {
     .catalogo-container .lista-catalogo ul {
         grid-template-columns: 1fr 1fr 1fr;
-	align-items: center;
-	    justify-content:center;
+	align-items: center!important;
+	    justify-content:center!important;
     }
 
  .catalogo-container .lista-catalogo ul .Card-catalogo {
