@@ -1,30 +1,31 @@
-const bcrypt = require('bcrypt');
 const conectarAoCluster = require('../config/dbConfig');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const SECRET = process.env.SECRET
+
 module.exports = {
-    async read(req, res) {
+    async login(req, res) {
         const { username, password } = req.body;
 
         try {
             const db = await conectarAoCluster();
 
-            const userCursor = await db.collection('usuarios').find({ username });
-            const users = await userCursor.toArray();
+            // Buscar o usuário pelo nome de usuário fornecido
+            const user = await db.collection('usuarios').findOne({ username });
 
-            if (users.length === 0) {
+            if (!user) {
                 return res.status(401).json({ error: 'Usuário não encontrado' });
             }
 
-            const user = users[0];
-
+            // Verificar se a senha fornecida corresponde à senha armazenada no banco de dados
             const passwordMatch = await bcrypt.compare(password, user.password);
 
-            if (!passwordMatch || !user.isAdmin) {
+            if (!passwordMatch) {
                 return res.status(401).json({ error: 'Credenciais inválidas' });
             }
 
-            const token = jwt.sign({ username: user.username, isAdmin: user.isAdmin }, 'suaChaveSecreta', { expiresIn: '2h' });
+            const token = jwt.sign({ username: user.username, isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: '2h' });
 
             return res.status(200).json({ token });
         } catch (error) {

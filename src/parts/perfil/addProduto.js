@@ -1,12 +1,7 @@
 import { motion } from "framer-motion";
-import { setCookie } from "./cookie/cookiHandler"; 
-import upload from "../img/upload-na-nuvem.png";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function AddProduto({ onClose }) {
-    const [exibirAddProduto, setExibirAddProduto] = useState(false);
-    const [produtosAdicionados, setProdutosAdicionados] = useState(0);
-
     const [formData, setFormData] = useState({
         nomeProduto: "",
         categoria: "",
@@ -15,13 +10,9 @@ function AddProduto({ onClose }) {
         unidadeProduto: "",
         mlGramProduto: "",
         precoProduto: "",
-        imagemProduto: "" // Adicionando campo para a imagem do produto
+        imagemProduto: "" 
     });
-    
-    const handleInputChange = (e) => {
-        e.stopPropagation(); 
-    };    
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -37,33 +28,32 @@ function AddProduto({ onClose }) {
             imagemProduto: file
         }));
     };
-    
-    const adicionarProduto = () => {
-        // Salvar os dados do produto como um objeto JSON
-        const produto = JSON.stringify(formData);
-        
-        // Definir o produto como um cookie dentro da pasta "ProdutosAdicionados"
-        setCookie(`ProdutosAdicionados/novoProduto_${produtosAdicionados}`, produto);
 
-        // Incrementar o contador de produtos adicionados
-        setProdutosAdicionados(produtosAdicionados + 1);
+    const adicionarProduto = async () => {
+        const formDataToSend = new FormData();
+        formDataToSend.append("nome", formData.nomeProduto);
+        formDataToSend.append("categoria", formData.categoria);
+        formDataToSend.append("subCategoria", formData.subCategoria);
+        formDataToSend.append("tipo", formData.tipo);
+        formDataToSend.append("unidade", formData.unidadeProduto);
+        formDataToSend.append("quantidade", formData.mlGramProduto);
+        formDataToSend.append("preco", formData.precoProduto);
+        formDataToSend.append("imagem", formData.imagemProduto);
 
-        // Fechar o modal após adicionar o produto se o número de produtos adicionados for pelo menos 5
-        if (produtosAdicionados >= 4) {
-            onClose();
+        try {
+            const response = await fetch('https://localhost:5000/perfil/adicionarProduto', {
+                method: 'POST',
+                body: formDataToSend
+            });
+            if (response.ok) {
+                // Produto adicionado com sucesso
+                onClose();
+            } else {
+                console.error('Erro ao adicionar produto:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao adicionar produto:', error);
         }
-
-        // Limpar o formulário
-        setFormData({
-            nomeProduto: "",
-            categoria: "",
-            subCategoria: "",
-            tipo: "",
-            unidadeProduto: "",
-            mlGramProduto: "",
-            precoProduto: "",
-            imagemProduto: ""
-        });
     };
 
     return (
@@ -84,37 +74,37 @@ function AddProduto({ onClose }) {
                     <div className="info-AddProduto">
                         <div className="input-container">
                             <label>Nome Produto</label>
-                            <input type="text" name="nomeProduto" placeholder="Brahman" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="text" name="nomeProduto" placeholder="Brahman" onChange={handleChange} />
                         </div>
                         <div className="input-container">
                             <label>Categoria</label>
-                            <input type="text" name="categoria" placeholder="Ex: Bebida" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="text" name="categoria" placeholder="Ex: Bebida" onChange={handleChange} />
                         </div>
                         <div className="input-container">
                             <label>SubCategoria</label>
-                            <input type="text" name="subCategoria" placeholder="Ex: bebida não alcoolica" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="text" name="subCategoria" placeholder="Ex: bebida não alcoolica" onChange={handleChange} />
                         </div>
                         <div className="input-container">
                             <label>Tipo</label>
-                            <input type="text" name="tipo" placeholder="Ex: Garrafa" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="text" name="tipo" placeholder="Ex: Garrafa" onChange={handleChange} />
                         </div>
                         <div className="input-container">
                             <label>Unidade do Produto</label>
-                            <input type="number" name="unidadeProduto" placeholder="Ex: 15" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="number" name="unidadeProduto" placeholder="Ex: 15" onChange={handleChange} />
                         </div>
                         <div className="input-container">
                             <label>Ml ou Grama do Produto</label>
-                            <input type="text" name="mlGramProduto" placeholder="Ex: 15" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="text" name="mlGramProduto" placeholder="Ex: 15" onChange={handleChange} />
                         </div>
                         <div className="input-container">
                             <label>Preço do Produto</label>
-                            <input type="text" name="precoProduto" placeholder="Ex: 15,49" onChange={handleChange}  onClick={handleInputChange}/>
+                            <input type="text" name="precoProduto" placeholder="Ex: 15,49" onChange={handleChange} />
                         </div>
                     </div>
                 </div>
                 <div className="button-action">
                     <button onClick={adicionarProduto}>Adicionar Produto</button>
-                    <button onClick={() => setExibirAddProduto(false)}>Fechar</button>
+                    <button onClick={() => onClose()}>Fechar</button>
                 </div>
             </form>
         </motion.div>

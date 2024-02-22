@@ -19,26 +19,28 @@ const GerenciarContato = () => {
 
     const handleSalvarContatos = async (e) => {
         e.preventDefault();
-
+    
         try {
+            const token = localStorage.getItem('authToken'); // Obtém o token armazenado localmente
             const response = await fetch('http://localhost:5000/adicionarContatos', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Inclui o token no cabeçalho da requisição
                 },
                 body: JSON.stringify(contatos)
             });
-
+    
             if (!response.ok) {
                 throw new Error('Erro ao salvar contatos. Por favor, tente novamente mais tarde.');
             }
-
+    
             console.log('Contatos salvos com sucesso!');
         } catch (error) {
             console.error('Erro ao salvar contatos:', error);
         }
     };
-
+    
     return (
         <motion.section
         transition={{

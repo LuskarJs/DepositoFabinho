@@ -1,86 +1,136 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const routes = require('./routes');
-const conectarAoCluster = require('./config/dbConfig');
+const { MongoClient } = require('mongodb');
 const jwt = require('jsonwebtoken');
-const Contato = require('./models/Contato');
+const bcrypt = require('bcrypt');
+const routes = require('./routes');
+require("dotenv").config();
+const conectarAoCluster = require('./config/dbConfig');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const SECRET = process.env.SECRET;
+const uri = process.env.MONGO_URI; 
 
- const jwtSecret = 'sua_chave_secreta_aqui'; // Substitua pela sua chave secreta JWT
-
-app.use(express.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.use('/perfil', (req, res, next) => {
+const verificarToken = (req, res, next) => {
     const token = req.headers.authorization;
-    console.log('Authorization Header:', token);
+
     if (!token) {
         return res.status(401).json({ error: 'Token não fornecido' });
     }
 
     try {
-        jwt.verify(token, jwtSecret, (err, decoded) => {
-            if (err) {
-                return res.status(401).json({ error: 'Token inválido' });
-            }
-            req.user = decoded;
-            next();
-        });
+        const decoded = jwt.verify(token, SECRET);
+        req.user = decoded;
+        next();
     } catch (error) {
         console.error('Erro ao verificar o token:', error);
-        return res.status(500).json({ error: 'Erro ao verificar o token' });
+        return res.status(403).json({ error: 'Token inválido ou expirado' });
     }
-});
+};
 
+
+app.use(express.json());
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', routes);
 
-app.post('/login', (req, res) => {
-    const { token } = req.body;
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
 
-    if (!token) {
-        return res.status(400).json({ error: 'Token não fornecido' });
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Credenciais não fornecidas' });
     }
 
-    localStorage.setItem('authToken', token);
+    try {
+        const db = await conectarAoCluster();
 
-    res.status(200).json({ message: 'Login bem-sucedido' });
+        const user = await db.collection('usuarios').findOne({ username });
+
+        if (!user) {
+            return res.status(401).json({ error: 'Usuário não encontrado' });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Credenciais inválidas' });
+        }
+
+        const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
+
+        return res.status(200).json({ token });
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        return res.status(500).json({ error: 'Erro ao fazer login' });
+    }
 });
 
-app.post('/adicionarContatos', async (req, res) => {
+app.post('/adicionarContatos', verificarToken, async (req, res) => {
     try {
         const { email, telefone, whatsapp, facebook, instagram } = req.body;
+        const username = req.user ? req.user.username : null;
 
-        // Crie um novo contato com os dados recebidos
-        const novoContato = new Contato({
-            email,
-            telefone,
-            whatsapp,
-            facebook,
-            instagram
-        });
+        if (!username) {
+            return res.status(401).json({ error: 'Usuário não autenticado' });
+        }
 
-        // Salve o novo contato no banco de dados
-        await novoContato.save();
+        const db = await conectarAoCluster();
+        const user = await db.collection('usuarios').findOne({ username });
 
-        res.status(201).json({ message: 'Contato adicionado com sucesso' });
+        if (!user) {
+            return res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+
+        await db.collection('usuarios').updateOne(
+            { username },
+            { $set: { 
+                'perfil.redesSociais.email': email,
+                'perfil.redesSociais.telefone': telefone,
+                'perfil.redesSociais.whatsapp': whatsapp,
+                'perfil.redesSociais.facebook': facebook,
+                'perfil.redesSociais.instagram': instagram 
+            } }
+        );
+
+        res.status(200).json({ message: 'Contatos adicionados com sucesso!' });
     } catch (error) {
-        console.error('Erro ao adicionar contato:', error);
-        res.status(500).json({ error: 'Erro ao adicionar contato' });
+        console.error('Erro ao adicionar contatos:', error);
+        res.status(500).json({ error: 'Erro ao adicionar contatos' });
     }
 });
+
+app.post('/perfil/adicionarProduto', async (req, res) => {
+    try {
+        const { nome, categoria, subCategoria, tipo, unidade, quantidade, preco, imagem } = req.body;
+        
+        // Validação dos dados do produto
+        if (!nome || !categoria || !tipo || !unidade || quantidade === undefined || preco === undefined) {
+            return res.status(400).json({ error: 'Todos os campos devem ser preenchidos' });
+        }
+        if (quantidade < 0 || preco <= 0) {
+            return res.status(400).json({ error: 'Quantidade e preço devem ser maiores que zero' });
+        }
+        
+        const result = await db.collection('Estoque').insertOne({ nome, categoria, subCategoria, tipo, unidade, quantidade, preco, imagem });
+        
+        if (result.insertedCount === 1) {
+            return res.status(200).json({ message: 'Produto adicionado com sucesso' });
+        } else {
+            return res.status(500).json({ error: 'Erro ao adicionar produto' });
+        }
+    } catch (error) {
+        console.error('Erro ao adicionar produto:', error);
+        res.status(500).json({ error: 'Erro ao adicionar produto' });
+    }
+});
+
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-conectarAoCluster()
-    .then(db => {
-        app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
-    })
-    .catch(error => {
-        console.error('Erro ao iniciar o servidor:', error);
-    });
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});

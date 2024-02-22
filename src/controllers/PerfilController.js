@@ -1,5 +1,9 @@
-const conectarAoCluster = require('../config/dbConfig');
+// PerfilController.js
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const conectarAoCluster = require('../config/dbConfig');
+
+const SECRET = process.env.SECRET;
 
 const PerfilController = {
     async read(req, res) {
@@ -23,22 +27,19 @@ const PerfilController = {
                 return res.status(401).json({ error: 'Credenciais inválidas' });
             }
 
-            // Verifica se o usuário é um administrador
             const isAdmin = user.isAdmin;
 
-            // Gera o token com informações adicionais
             const token = jwt.sign({ 
                 username: user.username, 
                 isAdmin 
-            }, 'suaChaveSecreta', { expiresIn: '2h' });
+            }, SECRET, { expiresIn: '2h' });
 
-            // Retorna os dados do perfil junto com o token
             return res.status(200).json({ 
                 token,
                 username: user.username,
                 isAdmin,
                 nomeCompleto: user.nomeCompleto, 
-                cargo: isAdmin ? 'Administrador' : 'Funcionário', 
+                cargo: isAdmin ? 'Administrador' : 'Funcionário',
                 fotoPerfil: user.fotoPerfil 
             });
         } catch (error) {

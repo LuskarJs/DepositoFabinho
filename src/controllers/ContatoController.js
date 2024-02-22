@@ -12,8 +12,14 @@ const adicionarContatos = async (req, res) => {
         }
 
         await db.collection('usuarios').updateOne(
-            { username },
-            { $set: { 'perfil.redesSociais': { email, telefone, whatsapp, facebook, instagram } } }
+            { username : username },
+            { $set: { 
+                'perfil.redesSociais.email': email,
+                'perfil.redesSociais.telefone': telefone,
+                'perfil.redesSociais.whatsapp': whatsapp,
+                'perfil.redesSociais.facebook': facebook,
+                'perfil.redesSociais.instagram': instagram 
+            } }
         );
 
         res.status(200).json({ message: 'Contatos adicionados com sucesso!' });

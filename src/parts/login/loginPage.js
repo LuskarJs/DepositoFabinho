@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import addTokenToHeaders from '../perfil/validade/token'; 
 import './login.css';
 
 const Login = () => {
@@ -8,37 +9,36 @@ const Login = () => {
     const [erro, setErro] = useState('');
     const navigate = useNavigate(); 
 
-    useEffect(() => {
-        const token = localStorage.getItem('authToken');
-        if (token) {
-            // Se o token estiver presente, redirecione o usuário para a página de perfil
-            navigate('/perfil');
-        }
-    }, [navigate]);
+    addTokenToHeaders()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
-            const response = await fetch('http://localhost:5000/login', {
+            const response = await fetch('http://depositodofabinho.com/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, password }), // Envia as credenciais no corpo da solicitação
+                body: JSON.stringify({ username, password })
             });
-    
+
             if (!response.ok) {
-                throw new Error('Erro ao fazer login. Por favor, verifique suas credenciais e tente novamente.');
+                throw new Error('Erro ao fazer login. Por favor, tente novamente mais tarde.');
             }
     
             const data = await response.json();
     
-            // Armazenar o token JWT no localStorage
-            localStorage.setItem('authToken', data.token);
-    
-            // Redirecionar para a página de perfil após o login bem-sucedido
-            navigate('/perfil');
+            if (data && data.token) {
+                // Armazenar o token JWT no localStorage
+                localStorage.setItem('authToken', data.token);
+                // Chamar a função para adicionar o token ao cabeçalho
+                addTokenToHeaders();
+                // Redirecionar para a página de perfil
+                navigate('/perfil');
+            } else {
+                setErro('Credenciais inválidas');
+            }
         } catch (error) {
             console.error('Erro ao fazer login:', error);
             setErro(error.message);

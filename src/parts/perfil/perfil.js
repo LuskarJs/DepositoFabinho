@@ -20,19 +20,19 @@ const Perfil = () => {
     const [optionDash, SetoptionDash] = useState("Estoque");
     const [OpenMenu, SetOpenMenu] = useState(false);
     const [nomeCompleto, setNomeCompleto] = useState("");
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [cargo, setCargo] = useState("");
     const navigate = useNavigate();
   
     useEffect(() => {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-          navigate('/login'); 
-      } else {
-          const decodedToken = parseJwt(token);
-          setNomeCompleto(decodedToken.username);
-          setIsAdmin(decodedToken.isAdmin);
-      }
-  }, [navigate]);
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            navigate('/login'); 
+        } else {
+            const decodedToken = parseJwt(token);
+            setNomeCompleto(decodedToken.username);
+            setCargo(decodedToken.isAdmin ? "Administrador" : "Funcionário"); 
+        }
+    }, [navigate]);
 
   const parseJwt = (token) => {
       try {
@@ -114,7 +114,7 @@ const Perfil = () => {
                 </div>
                 <div className={OpenMenu === true ? "info-container show" : "info-container hidden"} onClick={() => HandleOpen()}>
                     <h3>{nomeCompleto}</h3>
-                    <h4>Cargo: <span> Administradora</span></h4>
+                    <h4>Cargo: <span>{cargo}</span></h4>
                 </div>
                 <nav className={OpenMenu === true ? "option-dash show" : "option-dash hidden"} onClick={() => HandleOpen()}>
                     <ul>
