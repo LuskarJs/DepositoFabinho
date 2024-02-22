@@ -278,7 +278,13 @@
 @media (max-width: 858px) {
     .catalogo-container .lista-catalogo ul {
         grid-template-columns: 1fr 1fr 1fr;
+	align-items: center!important;
+	    justify-content:center!important;
     }
+
+ .catalogo-container .lista-catalogo ul .Card-catalogo {
+	 width:60%!important;
+ }
 }
 
 @media (max-width: 708px) {
@@ -292,3 +298,7 @@
         grid-template-columns: 1fr ;
     }
 }
+
+
+
+

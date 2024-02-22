@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await fetch('https://depositodofabinho.com/login', {
+            const response = await fetch('http://depositodofabinho.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -23,27 +23,30 @@ const Login = () => {
                 body: JSON.stringify({ username, password })
             });
 
-            if (!response.ok) {
-                throw new Error('Erro ao fazer login. Por favor, tente novamente mais tarde.');
-            }
-    
-            const data = await response.json();
-    
-            if (data && data.token) {
-                // Armazenar o token JWT no localStorage
-                localStorage.setItem('authToken', data.token);
-                // Chamar a função para adicionar o token ao cabeçalho
-                addTokenToHeaders();
-                // Redirecionar para a página de perfil
-                navigate('/perfil');
-            } else {
-                setErro('Credenciais inválidas');
-            }
-        } catch (error) {
-            console.error('Erro ao fazer login:', error);
-            setErro(error.message);
+        if (!response.ok) {
+            // Se a resposta não estiver OK, lança um erro com a mensagem da resposta
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
         }
-    };
+
+        const data = await response.json();
+
+        if (data && data.token) {
+            // Armazenar o token JWT no localStorage
+            localStorage.setItem('authToken', data.token);
+            // Chamar a função para adicionar o token ao cabeçalho
+            addTokenToHeaders();
+            // Redirecionar para a página de perfil
+            navigate('/perfil');
+        } else {
+            setErro('Credenciais inválidas');
+        }
+    } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        setErro(error.message); // Define a mensagem de erro recebida da resposta
+    }
+};
+    
 
     return (
         <section id="Login">
