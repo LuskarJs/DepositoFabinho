@@ -9,11 +9,7 @@ const Login = () => {
     const [erro, setErro] = useState('');
     const navigate = useNavigate(); 
 
-    addTokenToHeaders()
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -48,6 +44,7 @@ const Login = () => {
         setErro(error.message); // Define a mensagem de erro recebida da resposta
     }
 };
+    
 
     return (
         <section id="Login">
