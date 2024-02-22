@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await fetch('http://depositodofabinho.com/login', {
+            const response = await fetch('https://depositodofabinho.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
